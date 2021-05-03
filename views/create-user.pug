@@ -1,0 +1,17 @@
+extends layout.pug
+block content 
+    form(action="/users", method="post")
+        div 
+            label Username
+            input(type="text", name="username")
+        div 
+            label Email 
+            input(type="email", name="email")
+        div 
+            label Password 
+            input(type="password", name="password")
+        div 
+            label Confirm Password 
+            input(type="password", name="confirmPassword")
+        input(type="hidden", name="_csrf", value=csrfToken)
+        button(type="submit") Create User
