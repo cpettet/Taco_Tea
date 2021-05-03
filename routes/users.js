@@ -7,6 +7,7 @@ const {
   hashPassword,
 } = require("./utils");
 const { User } = require("../db/models");
+const { loginUser } = require("../auth");
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -38,36 +39,51 @@ router.post(
     } // the passwords match
     else {
       // hash the password
-      const hashedPass = await hashPassword(password)
+      const hashedPass = await hashPassword(password);
       // bring in the user from the db schema
-      await User.create({
+      const newUser = await User.create({
         user_name: username,
         email,
-        hashed_password: hashedPass
+        hashed_password: hashedPass,
       });
-      res.redirect('/');
+      loginUser(req, res, newUser);
+      res.redirect("/");
       // insert the new user in the db
     }
   })
 );
 
-router.get("/login", csrfProtection, asyncHandler(async (req, res,) => {
-  res.render("login", { csrfToken: req.csrfToken() });
-}));
+router.get(
+  "/login",
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    res.render("login", { csrfToken: req.csrfToken() });
+  })
+);
 
 router.post(
   "/login",
   csrfProtection,
   asyncHandler(async (req, res) => {
+    console.log(req.body);
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
+    console.log(user);
+    console.log(user.hashed_password);
     if (user) {
-      const correctPassword = await comparePassword(password, user.hashed_password);
+      const correctPassword = await comparePassword(
+        password,
+        user.hashed_password
+      );
       if (correctPassword) {
+        loginUser(req, res, user);
         res.redirect("/");
       }
     } else {
-
+      res.render("login", {
+        csrfToken: req.csrfToken(),
+        error: "Login info incorrect",
+      });
     }
   })
 );

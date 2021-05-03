@@ -1,6 +1,6 @@
 extends layout.pug
 block content 
-    form(action="/login", method="post")
+    form(action="/users/login", method="post")
         div
             label Email
             input(type="email", name="email")
@@ -9,3 +9,5 @@ block content
             input(type="password", name="password")
         input(type="hidden", name="_csrf", value= csrfToken)
         button(type="submit") Login
+    if error
+        p= error 
