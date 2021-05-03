@@ -7,7 +7,7 @@ const {
   hashPassword,
 } = require("./utils");
 const { User } = require("../db/models");
-const { loginUser } = require("../auth");
+const { loginUser, logoutUser } = require("../auth");
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -87,5 +87,10 @@ router.post(
     }
   })
 );
+
+router.post('/logout', (req, res) =>{
+  logoutUser(req, res);
+  res.redirect('/');
+})
 
 module.exports = router;
