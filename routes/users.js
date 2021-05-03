@@ -45,10 +45,28 @@ router.post(
         email,
         hashed_password: hashedPass
       });
-
       res.redirect('/');
-
       // insert the new user in the db
+    }
+  })
+);
+
+router.get("/login", csrfProtection, asyncHandler(async (req, res,) => {
+  res.render("login", { csrfToken: req.csrfToken() });
+}));
+
+router.post(
+  "/login",
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
+    const user = await User.findOne({ where: { email } });
+    if (user) {
+      const correctPassword = await comparePassword(password, user.hashed_password);
+      if (correctPassword) {
+        res.redirect("/");
+      }
+    } else {
 
     }
   })

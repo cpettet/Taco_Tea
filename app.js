@@ -25,7 +25,7 @@ const store = new SequelizeStore({ db: sequelize });
 
 app.use(
   session({
-    secret: 'superSecret',
+    secret: 'superSecret',  // individual user's session key
     store,
     saveUninitialized: false,
     resave: false,
@@ -34,6 +34,29 @@ app.use(
 
 // create Session table if it doesn't already exist
 store.sync();
+
+app.use((req, res, next) => {
+  let { history } = req.session;
+
+  if (!history) {
+    history = [];
+    req.session.history = history;
+  }
+  // Construct the full URL for the current request.
+  // Note: Using `req.get('host')` to get the hostname also
+  // gives you the port number.
+  const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+  // Add the URL to the beginning of the array.
+  history.unshift(url);
+  // Note: We don't need to update the `session.history` property
+  // with the updated array because arrays are passed by reference.
+  // Because arrays are passed by reference, when we get a
+  // reference to the array in the above code
+  // `let { history } = req.session;` and modify the array by
+  // calling `history.unshift(url);` we're modifying the original
+  // array that's stored in session!
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -53,5 +76,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// routes
 
 module.exports = app;
