@@ -1,5 +1,7 @@
+require("dotenv").config({ path: "./.env" });
+
 module.exports = {
-  environment: process.env.NODE_ENV || 'development',
+  environment: process.env.NODE_ENV || "development",
   port: process.env.PORT || 8080,
   db: {
     username: process.env.DB_USERNAME,

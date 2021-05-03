@@ -8,6 +8,7 @@
     "start:production": "node ./bin/www"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "connect-session-sequelize": "^7.0.4",
     "cookie-parser": "~1.4.4",
     "csurf": "^1.11.0",
@@ -17,7 +18,7 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "per-env": "^1.0.2",
-    "pg": "^8.4.2",
+    "pg": "^8.6.0",
     "pug": "2.0.4",
     "sequelize": "^5.22.3",
     "sequelize-cli": "^5.5.1"
