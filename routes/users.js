@@ -37,9 +37,19 @@ router.post(
       });
     } // the passwords match
     else {
-      // bring in the user from the db schema
-      // insert the new user in the db
       // hash the password
+      const hashedPass = await hashPassword(password)
+      // bring in the user from the db schema
+      await User.create({
+        user_name: username,
+        email,
+        hashed_password: hashedPass
+      });
+
+      res.redirect('/');
+
+      // insert the new user in the db
+
     }
   })
 );
