@@ -1,10 +1,9 @@
 nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* background-color: green; */
-    width: 100%;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: green; */
+  width: 100%;
 }
 
 /* .navbar-container {
@@ -15,12 +14,17 @@ nav {
 } */
 
 ul {
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 li {
-    padding: 1rem;
+  padding: 1rem;
+}
+
+img {
+  width: 341px;
+  height: 199px;
 }

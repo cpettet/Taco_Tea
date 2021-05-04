@@ -20,6 +20,7 @@ body {
     border-radius: 10px;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 80%;
     max-width: 525px;
     box-sizing: border-box;
@@ -33,6 +34,7 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 
 input {
   width: 70%;
@@ -62,4 +64,29 @@ textarea{
 button[type="submit"]:hover{
     background-color: limegreen;
     transition:ease
+}
+
+.post-submit{
+    background-color: limegreen;
+    transition:ease;
+    width: 100px;
+    height: 40px;
+    margin-top: 1rem;
+    
+}
+
+img{
+    width: 341px;
+    height: 199px;
+}
+
+.post-type{
+    width: 77%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    display:flex;
+    position:relative;
+    flex-direction: row;
+    justify-content:space-between;
 }
