@@ -1,8 +1,10 @@
-header 
-nav 
+header
+nav
+  link(rel='stylesheet' href='/stylesheets/navbar.css')
   img(src="/logo.png", alt="Taco Image", width="300px", height="300px")
-  ul.nav-links 
-    li: a(href="/") Home
-    li: a(href="/posts") Posts
-    li: a(href="/recipes") Recipes
-    li: a(href="/users/logout") Logout
+  div.navbar-container
+    ul.nav-links
+      li: a(href="/") Home
+      li: a(href="/posts") Posts
+      li: a(href="/recipes") Recipes
+      li: a(href="/users/logout") Logout

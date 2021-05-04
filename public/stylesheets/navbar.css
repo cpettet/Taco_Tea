@@ -1,0 +1,26 @@
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: green; */
+    width: 100%;
+
+}
+
+/* .navbar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} */
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+li {
+    padding: 1rem;
+}
