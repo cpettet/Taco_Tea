@@ -1,5 +1,9 @@
 extends layout.pug
 block content
+    header 
+        nav 
+            ul.nav-links
+                img(src="/logo.png", alt="Taco Image", width="300px", height="300px")
     link(rel='stylesheet' href='/stylesheets/login.css')
     div.form-container
         form(action="/users/login", method="post").form-box
@@ -8,8 +12,6 @@ block content
                 input(type="password", name="password" placeholder="Password" required)
                 input(type="hidden", name="_csrf", value= csrfToken)
                 button(type="submit") Login
-                p: a(href='/users/new') New account
-            
-               
+                p: a(href='/users/new') New account 
     if error
         p= error

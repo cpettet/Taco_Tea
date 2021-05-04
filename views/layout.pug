@@ -4,18 +4,6 @@ html
       block head
         title="Express Starter App"
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel="icon", type="image/png", href="/logo.png")
   body
-    if loggedIn
-      header 
-        nav 
-          ul.nav-links 
-            li:a(href="/") Home
-            li:a(href="/posts") Posts
-            li:a(href="/recipes") Recipes
-            li:a(href="/users/logout") Logout
-    else 
-      header 
-        nav 
-          ul.nav-links
-            img(src="/logo.png", alt="Taco Image", width="300px", height="300px")
     block content

@@ -1,6 +1,7 @@
 extends layout.pug
 
 block content
+    include navbar.pug
     link(rel='stylesheet' href='/stylesheets/login.css')
     form(action='/posts' method='post').form-box
         div.input-group

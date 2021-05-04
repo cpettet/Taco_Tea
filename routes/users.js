@@ -18,7 +18,8 @@ router.get(
   "/new",
   csrfProtection,
   asyncHandler(async (req, res) => {
-    res.render("create-user", { csrfToken: req.csrfToken() });
+    const loggedIn = res.locals.authenticated;
+    res.render("create-user", { csrfToken: req.csrfToken(), loggedIn });
   })
 );
 
