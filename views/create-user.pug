@@ -1,17 +1,12 @@
 extends layout.pug
 block content 
-    form(action="/users", method="post")
-        div 
-            label Username
-            input(type="text", name="username" value=username)
-        div 
-            label Email 
-            input(type="email", name="email" value=email)
-        div 
-            label Password 
-            input(type="password", name="password")
-        div 
-            label Confirm Password 
-            input(type="password", name="confirmPassword")
-        input(type="hidden", name="_csrf", value=csrfToken)
-        button(type="submit") Create User
+    link(rel='stylesheet' href='/stylesheets/login.css')
+    form(action="/users", method="post").form-box
+        div.input-group 
+            input(type="text", name="username" value=username, placeholder="Username")
+            input(type="email", name="email" value=email, placeholder="Email")
+            input(type="password", name="password", placeholder="Password")
+            input(type="password", name="confirmPassword", placeholder="Confirm Password")
+            input(type="hidden", name="_csrf", value=csrfToken)
+            button(type="submit") Create User
+            p: a(href='/users/login') Already have an account?
