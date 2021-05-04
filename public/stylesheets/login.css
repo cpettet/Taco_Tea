@@ -80,13 +80,18 @@ img{
     height: 199px;
 }
 
-.post-type{
-    width: 77%;
-    padding: 1rem;
+.selection{
+    width: 70%;
+    /* padding: 1rem; */
     margin-bottom: 1rem;
 
     display:flex;
     position:relative;
     flex-direction: row;
     justify-content:space-between;
+}
+
+select {
+    width: 80px;
+    text-align-last: center;
 }
