@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Recipe.associate = function (models) {
     // associations can be defined here
-    Recipe.hasMany(models.Ingredients, { foreignKey: "recipe_id" });
+    Recipe.hasMany(models.Ingredient, { foreignKey: "recipe_id" });
   };
   return Recipe;
 };

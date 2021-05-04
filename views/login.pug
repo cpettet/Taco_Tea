@@ -1,15 +1,15 @@
 extends layout.pug
 block content
-    form(action="/users/login", method="post")
-        div
-            label Email
-            input(type="email", name="email")
-        div
-            label Password
-            input(type="password", name="password")
-        input(type="hidden", name="_csrf", value= csrfToken)
-        button(type="submit") Login
-        div
-            p: a(href='/users/new') New account
+    link(rel='stylesheet' href='/stylesheets/login.css')
+    div.form-container
+        form(action="/users/login", method="post").form-box
+            .input-group
+                input(type="email", name="email" placeholder="Email")
+                input(type="password", name="password" placeholder="Password")
+                input(type="hidden", name="_csrf", value= csrfToken)
+                button(type="submit") Login
+                p: a(href='/users/new') New account
+            
+               
     if error
         p= error
