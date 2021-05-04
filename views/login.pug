@@ -4,8 +4,8 @@ block content
     div.form-container
         form(action="/users/login", method="post").form-box
             .input-group
-                input(type="email", name="email" placeholder="Email")
-                input(type="password", name="password" placeholder="Password")
+                input(type="email", name="email" placeholder="Email" required)
+                input(type="password", name="password" placeholder="Password" required)
                 input(type="hidden", name="_csrf", value= csrfToken)
                 button(type="submit") Login
                 p: a(href='/users/new') New account

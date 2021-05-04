@@ -88,9 +88,14 @@ router.post(
   })
 );
 
-router.post('/logout', (req, res) =>{
+router.get("/logout", (req, res) => {
   logoutUser(req, res);
-  res.redirect('/');
-})
+  res.redirect("/");
+});
+
+router.post("/logout", (req, res) => {
+  logoutUser(req, res);
+  res.redirect("/");
+});
 
 module.exports = router;

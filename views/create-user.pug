@@ -3,10 +3,10 @@ block content
     link(rel='stylesheet' href='/stylesheets/login.css')
     form(action="/users", method="post").form-box
         div.input-group 
-            input(type="text", name="username" value=username, placeholder="Username")
-            input(type="email", name="email" value=email, placeholder="Email")
-            input(type="password", name="password", placeholder="Password")
-            input(type="password", name="confirmPassword", placeholder="Confirm Password")
+            input(type="text", name="username" value=username, placeholder="Username" required)
+            input(type="email", name="email" value=email, placeholder="Email" required)
+            input(type="password", name="password", placeholder="Password" required)
+            input(type="password", name="confirmPassword", placeholder="Confirm Password" required)
             input(type="hidden", name="_csrf", value=csrfToken)
             button(type="submit") Create User
             p: a(href='/users/login') Already have an account?
