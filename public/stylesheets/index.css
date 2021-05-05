@@ -1,3 +1,7 @@
+body {
+  background-color: lightgoldenrodyellow;
+}
+
 @media screen and (max-width: 800px) {
   .cards-item {
     flex-wrap: wrap;
@@ -40,7 +44,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: auto;
+  height: 500px;
 }
 
 .cards {
@@ -90,4 +94,14 @@
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 0.1rem;
+}
+
+.header-container {
+  margin: 1rem;
+  margin-top: 4rem;
+  font-size: larger;
+}
+
+.header-container h1 {
+  color: green;
 }

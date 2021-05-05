@@ -3,7 +3,7 @@ extends layout
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
-  link(rel="stylesheet" href="/stylesheets/login.css")
+  link(rel="stylesheet" href="/stylesheets/navbar.css")
 
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
@@ -12,7 +12,7 @@ block content
   include navbar.pug
   div.content-container
     div.header-container
-      h2 Taco Feed
+      h1 Taco Feed
     ul.cards
       li.cards-item 
         for post in posts 

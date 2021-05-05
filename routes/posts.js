@@ -71,14 +71,51 @@ router.get(
   })
 );
 
-router.delete("/:id", requireAuth, asyncHandler(async (req, res) => {
-  // Let's come back to this
-  console.log(req)
-  const postId = req.params.id;
-  console.log(postId)
-  const post = await Post.findByPk(postId);
-  await post.destroy();
-  res.json({ delete: true, postId });
-}));
+router.delete(
+  "/:id",
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    // Let's come back to this
+    console.log(req);
+    const postId = req.params.id;
+    console.log(postId);
+    const post = await Post.findByPk(postId);
+    await post.destroy();
+    res.json({ delete: true, postId });
+  })
+);
+
+router.put(
+  "/:id",
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    console.log(`here is da body `, req.body);
+    const {
+      title,
+      postType,
+      isComments,
+      isEmojis,
+      body,
+      recipeId,
+      tagLinksId,
+      isVegetarian,
+      isVegan,
+      isGlutenFree,
+    } = req.body;
+    const author_id = req.session.auth.userId;
+    const post = await Post.findByPk(req.params.id);
+    await post.update({
+      author_id,
+      post_type: postType,
+      title,
+      body,
+      likes: isEmojis,
+      comments: isComments,
+      recipe_id: recipeId,
+      tag_links_id: tagLinksId,
+    });
+    res.json({ update: true, post_id: post.id });
+  })
+);
 
 module.exports = router;
