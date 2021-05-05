@@ -59,4 +59,16 @@ router.post(
   })
 );
 
+router.get(
+  "/:id",
+  requireAuth,
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const userId = req.session.auth.userId;
+    const postId = req.params.id;
+    const post = await Post.findByPk(postId);
+    res.render("edit-post", { post, userId, csrfToken: req.csrfToken() });
+  })
+);
+
 module.exports = router;

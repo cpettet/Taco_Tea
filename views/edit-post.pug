@@ -1,0 +1,47 @@
+extends layout.pug
+
+block content
+  include navbar.pug
+  link(rel='stylesheet' href='/stylesheets/login.css')
+  script(src="/javascripts/form.js")
+  form(action='/posts' method='post').form-box
+    div.input-group
+      input(type="text", name="title" value= post.title)
+      //- input(type="text", name="postType" value= postType, placeholder="Story or Recipe")
+      div.selection.post-type
+        label Change the post type
+        select(name="postType", id="postType", required, value= post.post_type)
+          option(value="story") Story
+          option(value="recipe") Recipe
+      .selection.comments-select
+        label Allow user comments?
+        select(name="isComments", required, value= post.comments)
+          option(value="true") Yes
+          option(value="false") No
+      .selection.emojis-select
+        label Allow user emojis and likes?
+        select(name="isEmojis", required, value= post.likes)
+          option(value="true") Yes
+          option(value="false") No
+      textarea(name="body", required)= post.body
+      input(type="hidden", name="_csrf", value= csrfToken)
+      div(class="recipe" hidden)
+        div.input-group
+          .selection.vegetarian
+            label Is this recipe vegetarian?
+            select(name="isVegetarian", required)
+              option(value="true" default) Yes
+              option(value="false") No
+          .selection.vegan
+            label Is this recipe vegan?
+            select(name="isVegan", required)
+              option(value="true" default) Yes
+              option(value="false") No
+          .selection.gluten-free
+            label Is this recipe gluten free?
+            select(name="isGlutenFree", required)
+              option(value="true" default) Yes
+              option(value="false") No
+      .crud-buttons
+        button(type="submit")#post-edit.edit-buttons Modify
+        button(type="submit")#post-delete.edit-buttons Delete

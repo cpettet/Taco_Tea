@@ -76,6 +76,7 @@ button[type="submit"]:hover{
     height: 40px;
     margin-top: 1rem;
 
+
 }
 
 img{
@@ -97,4 +98,27 @@ img{
 select {
     width: 80px;
     text-align-last: center;
+}
+
+.crud-buttons{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.edit-buttons{
+    transition:ease;
+    width: 100px;
+    height: 40px;
+    margin-top: 1rem;
+}
+
+
+#post-edit{
+    background-color:lightgreen;
+}
+
+#post-delete{
+    background-color: red;
+    color:white
 }
