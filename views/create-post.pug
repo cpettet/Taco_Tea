@@ -10,7 +10,7 @@ block content
       //- input(type="text", name="postType" value= postType, placeholder="Story or Recipe")
       div.selection.post-type
         label Please select the post type
-        select(name="postType", required)
+        select(name="postType", id="postType", required)
           option(value="story" default) Story
           option(value="recipe") Recipe
       .selection.comments-select
@@ -25,21 +25,21 @@ block content
           option(value="false") No
       textarea(name="body", placeholder="Let's Taco about it :)", required)
       input(type="hidden", name="_csrf", value= csrfToken)
-    div(class="recipe" hidden)
-      div.input-group
-        .selection.vegetarian
-          label Is this recipe vegetarian?
-          select(name="isVegetarian", required)
-            option(value="true" default) Yes
-            option(value="false") No
-        .selection.vegan
-          label Is this recipe vegan?
-          select(name="isVegan", required)
-            option(value="true" default) Yes
-            option(value="false") No
-        .selection.gluten-free
-          label Is this recipe gluten free?
-          select(name="isGlutenFree", required)
-            option(value="true" default) Yes
-            option(value="false") No
-      button(type="submit").post-submit Submit 
+      div(class="recipe" hidden)
+        div.input-group
+          .selection.vegetarian
+            label Is this recipe vegetarian?
+            select(name="isVegetarian", required)
+              option(value="true" default) Yes
+              option(value="false") No
+          .selection.vegan
+            label Is this recipe vegan?
+            select(name="isVegan", required)
+              option(value="true" default) Yes
+              option(value="false") No
+          .selection.gluten-free
+            label Is this recipe gluten free?
+            select(name="isGlutenFree", required)
+              option(value="true" default) Yes
+              option(value="false") No
+      button(type="submit").post-submit Submit
