@@ -15,15 +15,20 @@ block content
       h2 Taco Feed
     ul.cards
       li.cards-item 
-        div.card
-          h2.post-title Title
-          p.post-text Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore nobis quisquam sequi officiis atque cupiditate voluptatum totam aperiam perspiciatis commodi. Esse assumenda laborum nihil soluta sit, quibusdam alias inventore repellat?
-          button.read-button Read Post
-        div.card
-          h2.post-title Second Title
-          p.post-text Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore nobis quisquam sequi officiis atque cupiditate voluptatum totam aperiam perspiciatis commodi. Esse assumenda laborum nihil soluta sit, quibusdam alias inventore repellat?
-          button.read-button read post
-        div.card
-          h2.post-title Third Title
-          p.post-text Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore nobis quisquam sequi officiis atque cupiditate voluptatum totam aperiam perspiciatis commodi. Esse assumenda laborum nihil soluta sit, quibusdam alias inventore repellat?
-          button.read-button read post
+        for post in posts 
+          div.card
+            h2.post-title= post.title
+            p.post-text= post.body
+            a(href="/").read-button read post
+        //- div.card
+        //-   h2.post-title Title
+        //-   p.post-text Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore nobis quisquam sequi officiis atque cupiditate voluptatum totam aperiam perspiciatis commodi. Esse assumenda laborum nihil soluta sit, quibusdam alias inventore repellat?
+        //-   button.read-button Read Post
+        //- div.card
+        //-   h2.post-title Second Title
+        //-   p.post-text Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore nobis quisquam sequi officiis atque cupiditate voluptatum totam aperiam perspiciatis commodi. Esse assumenda laborum nihil soluta sit, quibusdam alias inventore repellat?
+        //-   button.read-button read post
+        //- div.card
+        //-   h2.post-title Third Title
+        //-   p.post-text Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore nobis quisquam sequi officiis atque cupiditate voluptatum totam aperiam perspiciatis commodi. Esse assumenda laborum nihil soluta sit, quibusdam alias inventore repellat?
+        //-   button.read-button read post
