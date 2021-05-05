@@ -71,4 +71,14 @@ router.get(
   })
 );
 
+router.delete("/:id", requireAuth, asyncHandler(async (req, res) => {
+  // Let's come back to this
+  console.log(req)
+  const postId = req.params.id;
+  console.log(postId)
+  const post = await Post.findByPk(postId);
+  await post.destroy();
+  res.json({ delete: true, postId });
+}));
+
 module.exports = router;

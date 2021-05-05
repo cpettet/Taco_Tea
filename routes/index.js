@@ -12,5 +12,4 @@ router.get('/', requireAuth, asyncHandler(async (req, res, next) => {
 
 }));
 
-
 module.exports = router;

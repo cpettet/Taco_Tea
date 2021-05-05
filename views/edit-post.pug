@@ -4,6 +4,7 @@ block content
   include navbar.pug
   link(rel='stylesheet' href='/stylesheets/login.css')
   script(src="/javascripts/form.js")
+
   form(action='/posts' method='post').form-box
     div.input-group
       input(type="text", name="title" value= post.title)
@@ -42,6 +43,7 @@ block content
             select(name="isGlutenFree", required)
               option(value="true" default) Yes
               option(value="false") No
+      div(hidden).error-box
       .crud-buttons
         button(type="submit")#post-edit.edit-buttons Modify
-        button(type="submit")#post-delete.edit-buttons Delete
+        button#post-delete.edit-buttons Delete
