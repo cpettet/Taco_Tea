@@ -1,14 +1,35 @@
-@media screen and (min-width: 1200px) {
+@media screen and (max-width: 800px) {
   .cards-item {
-    width: 90%
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+  }
+  .card {
+    width: 70%;
+    min-width: 300px;
   }
 }
 
-@media screen and (max-width: 600px) {
-
+@media screen and (min-width: 801px) {
   .cards-item {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .card {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .cards-item {
+    display: flex;
+    justify-content: center;
     width: 90%;
     flex-wrap: wrap;
+  }
+  .card {
+    width: 25%;
   }
 }
 
@@ -31,6 +52,8 @@
 }
 
 .cards-item {
+  display: flex;
+  justify-content: center;
   display: flex;
   padding: 1rem;
 }
