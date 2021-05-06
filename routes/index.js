@@ -6,7 +6,8 @@ const { Post } = require("../db/models");
 
 router.get('/', requireAuth, asyncHandler(async (req, res, next) => {
   const userId = req.session.auth.userId;
-  const posts = await Post.findAll({ where: { author_id: userId } });
+  const posts = await Post.findAll({
+    where: { author_id: userId }, order: [['updatedAt', 'DESC']] });
 
   res.render('index', { posts });
 

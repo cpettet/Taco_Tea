@@ -138,3 +138,7 @@ select {
 #comment-text-area{
     height:4rem;
 }
+
+.hidden{
+    display: none;
+}
