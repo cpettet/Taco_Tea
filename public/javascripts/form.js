@@ -76,18 +76,21 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   //listen for allowed comments && likes
   const allowComments = document.querySelector("select[name='isComments']");
-  const commentsContainer = document.querySelector(".comment-box");
+  const commentsContainer = document.querySelector(".form-box.comment-box");
 
-  // if(allowComments.value === true){
-  //   commentsContainer.classList.remove('hidden')
-  // }
+  if(allowComments.value === true){
+      commentsContainer.hidden = false
+    } else{
+      commentsContainer.hidden = true
+  }
+
   allowComments.addEventListener("change", (e) => {
     const isComments = allowComments.value
     console.log(typeof isComments)
     if(isComments === "true"){
-      commentsContainer.classList.remove('hidden')
+      commentsContainer.hidden = false
     } else{
-      commentsContainer.classList.add('hidden')
+      commentsContainer.hidden = true
     }
   });
 });
