@@ -124,4 +124,5 @@ window.addEventListener("DOMContentLoaded", async () => {
       errorBox.style.marginTop = "1rem";
     }
   });
+  
 });

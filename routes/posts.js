@@ -73,8 +73,10 @@ router.get(
       where: {
         post_id: { [Op.eq]: postId }
       },
+      include: [{model: User}],
       order: [['updatedAt', 'DESC']]
     });
+  
     //   - order by updatedAt, desc
     // - carried comments into the object for render
     res.render("edit-post", { post, userId, csrfToken: req.csrfToken(), comments });
