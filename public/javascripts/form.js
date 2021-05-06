@@ -124,5 +124,34 @@ window.addEventListener("DOMContentLoaded", async () => {
       errorBox.style.marginTop = "1rem";
     }
   });
-  
+
+  const emojiContainers = document.querySelectorAll(".emoji-container");
+  //loop over each emojiContainer
+  emojiContainers.forEach((container) => {
+    container.addEventListener("click", async (e) => {
+      console.log(e);
+      e.preventDefault();
+      try {
+        const payload = {
+          emoji: e.target.innerText,
+          post_id: postId,
+        };
+        const response = await fetch("/likes", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+        if (response.status !== 200) {
+          throw new Error("there was an error");
+        }
+        const data = await response.json();
+        e.target.nextElementSibling.innerText = data.count;
+        console.log(data);
+      } catch (error) {
+        console.log(`there was an error`);
+      }
+    });
+  });
 });

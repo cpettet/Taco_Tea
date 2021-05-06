@@ -48,7 +48,9 @@ block content
         button#post-delete.edit-buttons Delete
       .emoji-box
         for emoji in emojis 
-          div.emoji= emoji
+          div(name=emoji).emoji-container
+            button#emoji= emoji
+            div#count 0
 
   div(hidden).comment-box
   form.form-box.comment-box

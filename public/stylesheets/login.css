@@ -151,6 +151,23 @@ select {
     align-content: space-around;
 }
 
-.emoji {
+#emoji {
     margin: 0.5rem;
+    border:none;
+    background-color: transparent;
+}
+
+#emoji:hover{
+    background-color: rgb(235, 218, 212);
+}
+
+.emoji-container{
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+#count{
+    margin:0.5rem;
+    text-align:center
 }

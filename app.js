@@ -10,6 +10,7 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const postRouter = require("./routes/posts");
 const commentsRouter = require("./routes/comments");
+const likesRouter = require("./routes/likes");
 const { restoreUser } = require("./auth");
 const cors = require("cors");
 
@@ -44,8 +45,10 @@ store.sync();
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/posts", postRouter)
+app.use("/posts", postRouter);
 app.use("/comments", commentsRouter);
+app.use("/likes", likesRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
