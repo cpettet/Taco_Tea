@@ -122,3 +122,19 @@ select {
     background-color: red;
     color:white
 }
+
+.comment-box{
+    display:flex;
+    align-items: flex-end;
+}
+
+#add-comment{
+    text-align: center;
+    margin-top: 1rem;
+    background-color: lightgreen;
+    border-radius: 5px;
+}
+
+#comment-text-area{
+    height:4rem;
+}
