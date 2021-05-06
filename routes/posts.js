@@ -2,8 +2,9 @@ const express = require("express");
 
 const router = express.Router();
 const { csrfProtection, asyncHandler } = require("./utils");
-const { User, Post } = require("../db/models");
+const { User, Post, Comment, Sequelize } = require("../db/models");
 const { requireAuth } = require("../auth");
+const Op = Sequelize.Op;
 
 router.get(
   "/",
@@ -67,7 +68,16 @@ router.get(
     const userId = req.session.auth.userId;
     const postId = req.params.id;
     const post = await Post.findByPk(postId);
-    res.render("edit-post", { post, userId, csrfToken: req.csrfToken() });
+    // - grab all comments by post_id
+    const comments = await Comment.findAll({
+      where: {
+        post_id: { [Op.eq]: postId }
+      },
+      order: [['updatedAt', 'DESC']]
+    });
+    //   - order by updatedAt, desc
+    // - carried comments into the object for render
+    res.render("edit-post", { post, userId, csrfToken: req.csrfToken(), comments });
   })
 );
 

@@ -78,7 +78,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   const allowComments = document.querySelector("select[name='isComments']");
   const commentsContainer = document.querySelector(".form-box.comment-box");
 
-  if(allowComments.value === true){
+  if(allowComments.value === "true"){
       commentsContainer.hidden = false
     } else{
       commentsContainer.hidden = true
@@ -93,10 +93,10 @@ window.addEventListener("DOMContentLoaded", async () => {
       commentsContainer.hidden = true
     }
   });
-});
 
-// if (value === "recipe") {
-//   recipeContainer.hidden = false;
-// } else {
-//   recipeContainer.hidden = true;
-// }
+  const commentSubmit = document.querySelector("#add-comment");
+  commentSubmit.addEventListener("click", async (e) => {
+    e.preventDefault();
+    // postId
+  })
+});
