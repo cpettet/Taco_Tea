@@ -8,7 +8,6 @@ block content
   form.form-box
     div.input-group
       input(type="text", name="title" value= post.title)
-      //- input(type="text", name="postType" value= postType, placeholder="Story or Recipe")
       div.selection.post-type
         label Change the post type
         select(name="postType", id="postType", required, value= post.post_type)
@@ -45,5 +44,5 @@ block content
               option(value="false") No
       div(hidden).error-box
       .crud-buttons
-        button(type="submit")#post-edit.edit-buttons Modify
+        button#post-edit.edit-buttons Modify
         button#post-delete.edit-buttons Delete

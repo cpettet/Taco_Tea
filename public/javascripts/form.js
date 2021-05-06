@@ -40,9 +40,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     const form = document.querySelector(".form-box");
     const formData = new FormData(form);
     const title = formData.get("title");
-    console.log(title);
     const post_type = formData.get("postType");
-    console.log(post_type);
     const comments = formData.get("isComments");
     const likes = formData.get("isEmojis");
     const doc_body = formData.get("body");
