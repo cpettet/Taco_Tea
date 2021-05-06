@@ -78,25 +78,50 @@ window.addEventListener("DOMContentLoaded", async () => {
   const allowComments = document.querySelector("select[name='isComments']");
   const commentsContainer = document.querySelector(".form-box.comment-box");
 
-  if(allowComments.value === "true"){
-      commentsContainer.hidden = false
-    } else{
-      commentsContainer.hidden = true
+  if (allowComments.value === "true") {
+    commentsContainer.hidden = false;
+  } else {
+    commentsContainer.hidden = true;
   }
 
   allowComments.addEventListener("change", (e) => {
-    const isComments = allowComments.value
-    console.log(typeof isComments)
-    if(isComments === "true"){
-      commentsContainer.hidden = false
-    } else{
-      commentsContainer.hidden = true
+    const isComments = allowComments.value;
+    console.log(typeof isComments);
+    if (isComments === "true") {
+      commentsContainer.hidden = false;
+    } else {
+      commentsContainer.hidden = true;
     }
   });
 
   const commentSubmit = document.querySelector("#add-comment");
   commentSubmit.addEventListener("click", async (e) => {
     e.preventDefault();
-    // postId
-  })
+    //get commentBody value
+    const content = document.querySelector("#comment-text-area").value;
+    const payload = {
+      content,
+      post_id: postId,
+    };
+    try {
+      const response = await fetch(`/comments`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      console.log(response);
+      if (response.status !== 200) {
+        throw new Error(`there was an error! The comment could not be added`);
+      }
+      window.location.replace("/");
+    } catch (error) {
+      const errorBox = document.querySelector(".error-box");
+      errorBox.hidden = false;
+      errorBox.innerHTML = e;
+      errorBox.style.textAlign = "center";
+      errorBox.style.marginTop = "1rem";
+    }
+  });
 });
