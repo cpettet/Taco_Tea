@@ -41,14 +41,16 @@ window.addEventListener("DOMContentLoaded", async () => {
     const formData = new FormData(form);
     const title = formData.get("title");
     const post_type = formData.get("postType");
-    const comments = formData.get("isComments");
-    const likes = formData.get("isEmojis");
+    const isComments = formData.get("isComments");
+    const isEmojis = formData.get("isEmojis");
     const doc_body = formData.get("body");
+    console.log(isComments);
+    console.log(isEmojis);
     const payload = {
       title,
       post_type,
-      comments,
-      likes,
+      isComments,
+      isEmojis,
       body: doc_body,
     };
     try {
@@ -71,4 +73,9 @@ window.addEventListener("DOMContentLoaded", async () => {
       errorBox.style.marginTop = "1rem";
     }
   });
+
+  //listen for allowed comments && likes
+  const allowComments = document.querySelector("select[name='isComments']");
+  const commentsContainer = document.querySelector(".comment-box");
+  allowComments.addEventListener("change", (e) => {});
 });

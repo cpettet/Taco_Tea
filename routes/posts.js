@@ -99,6 +99,9 @@ router.put(
       isVegan,
       isGlutenFree,
     } = req.body;
+    console.log(`here come da logs`);
+    console.log(isComments);
+    console.log(isEmojis);
     const author_id = req.session.auth.userId;
     const post = await Post.findByPk(req.params.id);
     await post.update({

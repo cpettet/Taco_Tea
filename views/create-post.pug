@@ -15,13 +15,13 @@ block content
       .selection.comments-select
         label Allow user comments?
         select(name="isComments", required)
-          option(value="true" ) Yes
-          option(value="false" default) No
+          option(value=true ) Yes
+          option(value=false default) No
       .selection.emojis-select
         label Allow user emojis and likes?
         select(name="isEmojis", required)
-          option(value="true" ) Yes
-          option(value="false" default) No
+          option(value=true ) Yes
+          option(value=false default) No
       textarea(name="body", placeholder="Let's Taco about it :)", required)
       input(type="hidden", name="_csrf", value= csrfToken)
       div(class="recipe" hidden)

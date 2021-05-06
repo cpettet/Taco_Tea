@@ -15,14 +15,14 @@ block content
           option(value="recipe") Recipe
       .selection.comments-select
         label Allow user comments?
-        select(name="isComments", required, value= post.comments)
-          option(value="true") Yes
-          option(value="false") No
+        select(name="isComments", required)
+          option(value="true", selected=(true === post.comments)) Yes
+          option(value="false", selected=(false === post.comments)) No
       .selection.emojis-select
         label Allow user emojis and likes?
-        select(name="isEmojis", required, value= post.likes)
-          option(value="true") Yes
-          option(value="false") No
+        select(name="isEmojis", required)
+          option(value="true", selected=(true === post.likes)) Yes
+          option(value="false", selected=(false === post.likes)) No
       textarea(name="body", required)= post.body
       input(type="hidden", name="_csrf", value= csrfToken)
       div(class="recipe" hidden)
