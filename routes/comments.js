@@ -9,6 +9,17 @@ router.get("/", (req, res) => {
   res.send("Hello from the comments");
 });
 
+/*
+frontend:
+ - click edit -> new page in /comments/:id
+
+backend:
+ - /comments/:id
+    - shows edit functionality if author
+        - req.auth.session.userId === comment.author_id
+    - shows comment text if non-author
+*/
+
 router.post(
   "/",
   requireAuth,

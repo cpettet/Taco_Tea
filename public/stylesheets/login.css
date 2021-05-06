@@ -1,4 +1,3 @@
-
 body {
   font-size: 16px;
   background-color: lightcoral;
@@ -141,4 +140,17 @@ select {
 
 .hidden{
     display: none;
+}
+
+.emoji-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: hidden;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+.emoji {
+    margin: 0.5rem;
 }

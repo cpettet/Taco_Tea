@@ -65,6 +65,17 @@ router.get(
   requireAuth,
   csrfProtection,
   asyncHandler(async (req, res) => {
+    const emojiCodes = [
+      "1F44D", // thumbs-up
+      "1F44E", // thumbs-down
+      "1F525", // fire
+      "1F4A9", // poop
+      "1F4A6", // water
+      "1F32E", // taco
+      "1F389", // confetti
+      "1F920", // sombrero
+    ];
+    // const realEmojis = ["👍", "👎", "🔥", "💩", "💦", "🌮", "🎉", "🤠"];
     const userId = req.session.auth.userId;
     const postId = req.params.id;
     const post = await Post.findByPk(postId);
@@ -76,10 +87,12 @@ router.get(
       include: [{model: User}],
       order: [['updatedAt', 'DESC']]
     });
-  
+    const emojis = emojiCodes.map((code) => {
+      return String.fromCodePoint(parseInt(code, 16));
+    })
     //   - order by updatedAt, desc
     // - carried comments into the object for render
-    res.render("edit-post", { post, userId, csrfToken: req.csrfToken(), comments });
+    res.render("edit-post", { post, userId, csrfToken: req.csrfToken(), comments, emojis });
   })
 );
 
