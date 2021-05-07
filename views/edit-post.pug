@@ -47,9 +47,9 @@ block content
         button#post-edit.edit-buttons Modify
         button#post-delete.edit-buttons Delete
       .emoji-box
-        for emoji in emojis 
-          div(name=emoji).emoji-container
-            button#emoji= emoji.symbol
+        for emoji in emojis
+          div(name= emoji.symbol).emoji-container
+            button(name= emoji.symbol)#emoji= emoji.symbol
             div#count= emoji.count
 
   div(hidden).comment-box
@@ -60,4 +60,3 @@ block content
       div.comments-container
         p=comment.content
         p=comment.User.user_name
-       

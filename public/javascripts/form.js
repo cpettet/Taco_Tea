@@ -128,12 +128,14 @@ window.addEventListener("DOMContentLoaded", async () => {
   const emojiContainers = document.querySelectorAll(".emoji-container");
   //loop over each emojiContainer
   emojiContainers.forEach((container) => {
-    container.addEventListener("click", async (e) => {
+    const emojiButton = container.childNodes[0];
+
+    emojiButton.addEventListener("click", async (e) => {
       console.log(e);
       e.preventDefault();
       try {
         const payload = {
-          emoji: e.target.innerText,
+          emoji: e.target.name,
           post_id: postId,
         };
         const response = await fetch("/likes", {
@@ -147,6 +149,7 @@ window.addEventListener("DOMContentLoaded", async () => {
           throw new Error("there was an error");
         }
         const data = await response.json();
+
         e.target.nextElementSibling.innerText = data.count;
         console.log(data);
       } catch (error) {

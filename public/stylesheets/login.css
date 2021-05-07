@@ -149,12 +149,14 @@ select {
     overflow: hidden;
     justify-content: space-around;
     align-content: space-around;
+
 }
 
 #emoji {
     margin: 0.5rem;
     border:none;
     background-color: transparent;
+    
 }
 
 #emoji:hover{
@@ -165,6 +167,7 @@ select {
     display:flex;
     flex-direction: column;
     align-content: center;
+
 }
 
 #count{
