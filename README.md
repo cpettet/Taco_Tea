@@ -8,7 +8,7 @@ Use this project skeleton as a starting point for structuring your app. Things t
 
 # Taco Tea 
 
-Taco Tea is a Medium clone with a primary focus on food. It enables a user to make posts about stories of their food excursions as well as share recipes. The user is given the ability to make comments and react with emojis on a particular post. Users will also have a dashboard that will show their collections of posts. 
+Taco Tea is a Medium clone with a primary focus on food. It enables a user to make posts about stories of their food excursions as well as share recipes. The user is given the ability to make comments and react with emojis on a particular post. Users will also have a dashboard that will show a collections of their posts. 
 
 <insert images of web app here>
 
