@@ -64,6 +64,7 @@ router.get(
   requireAuth,
   csrfProtection,
   asyncHandler(async (req, res) => {
+    const postId = req.params.id;
     const emojiCodes = [
       "1F44D", // thumbs-up
       "1F44E", // thumbs-down
@@ -75,9 +76,61 @@ router.get(
       "1F920", // sombrero
     ];
     const realEmojis = ["👍", "👎", "🔥", "💩", "💦", "🌮", "🎉", "🤠"];
+    const emojiObj = {
+      "👍": {
+        symbol: "👍",
+        count: 0,
+      },
+      "👎": {
+        symbol: "👎",
+        count: 0,
+      },
+      "🔥": {
+        symbol: "🔥",
+        count: 0,
+      },
+      "💩": {
+        symbol: "💩",
+        count: 0,
+      },
+      "💦": {
+        symbol: "💦",
+        count: 0,
+      },
+      "🌮": {
+        symbol: "🌮",
+        count: 0,
+      },
+      "🎉": {
+        symbol: "🎉",
+        count: 0,
+      },
+      "🤠": {
+        symbol: "🤠",
+        count: 0,
+      },
+    };
+
+    const totalLikes = await Like.findAll({
+      where: {
+        post_id: postId,
+      },
+    });
+
+    // loop over total likes
+    // check the emoji type
+    //const emojis = Object.entries(emojiObj);
+    //console.log(totalLikes.toJSON());
+    totalLikes.forEach((emoji) => {
+      const emojiSymbol = emoji.dataValues.emoji;
+      if (emojiObj[emojiSymbol] === undefined) {
+        return;
+      }
+      emojiObj[emojiSymbol]["count"]++;
+    });
+    console.log(emojiObj);
     // array of dictionaries, ex. [{ '👎': 4 }]
     const userId = req.session.auth.userId;
-    const postId = req.params.id;
     const post = await Post.findByPk(postId);
     // - grab all comments by post_id
     const comments = await Comment.findAll({
@@ -94,14 +147,12 @@ router.get(
       userId,
       csrfToken: req.csrfToken(),
       comments,
-      emojis: realEmojis,
+      emojis: emojiObj,
     });
   })
 );
 
-function countEmojis(params) {
-  
-}
+function countEmojis(params) {}
 
 router.delete(
   "/:id",

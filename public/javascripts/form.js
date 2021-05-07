@@ -154,4 +154,39 @@ window.addEventListener("DOMContentLoaded", async () => {
       }
     });
   });
+  getEmojis(postId);
 });
+
+const getEmojis = async (postId) => {
+  const emojiContainers = document.querySelectorAll(".emoji-container");
+  const emojis = [];
+  const count = [];
+  emojiContainers.forEach((container) => {
+    container.childNodes.forEach((e) => {
+      if (e.id === "emoji") emojis.push(e.innerText);
+      if (e.id === "count") count.push(e.innerText);
+      // try {
+      //   const payload = {
+      //     emoji: e.innerText,
+      //     post_id: postId,
+      //   };
+      //   const response = await fetch("/likes", {
+      //     method: "post",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(payload),
+      //   });
+      //   if (response.status !== 200) {
+      //     throw new Error("there was an error");
+      //   }
+      //   const data = await response.json();
+      //   e.innerText = data.count;
+      //   console.log(data);
+      // } catch (error) {
+      //   console.log(`there was an error`);
+      // }
+    });
+  });
+  console.log(emojis, count);
+};

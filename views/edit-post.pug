@@ -49,8 +49,8 @@ block content
       .emoji-box
         for emoji in emojis 
           div(name=emoji).emoji-container
-            button#emoji= emoji
-            div#count 0
+            button#emoji= emoji.symbol
+            div#count= emoji.count
 
   div(hidden).comment-box
   form.form-box.comment-box
