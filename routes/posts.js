@@ -1,8 +1,7 @@
 const express = require("express");
-
 const router = express.Router();
 const { csrfProtection, asyncHandler } = require("./utils");
-const { User, Post, Comment, Sequelize } = require("../db/models");
+const { User, Post, Comment, Sequelize, Like } = require("../db/models");
 const { requireAuth } = require("../auth");
 const Op = Sequelize.Op;
 
@@ -75,26 +74,34 @@ router.get(
       "1F389", // confetti
       "1F920", // sombrero
     ];
-    // const realEmojis = ["👍", "👎", "🔥", "💩", "💦", "🌮", "🎉", "🤠"];
+    const realEmojis = ["👍", "👎", "🔥", "💩", "💦", "🌮", "🎉", "🤠"];
+    // array of dictionaries, ex. [{ '👎': 4 }]
     const userId = req.session.auth.userId;
     const postId = req.params.id;
     const post = await Post.findByPk(postId);
     // - grab all comments by post_id
     const comments = await Comment.findAll({
       where: {
-        post_id: { [Op.eq]: postId }
+        post_id: { [Op.eq]: postId },
       },
-      include: [{model: User}],
-      order: [['updatedAt', 'DESC']]
+      include: [{ model: User }],
+      order: [["updatedAt", "DESC"]],
     });
-    const emojis = emojiCodes.map((code) => {
-      return String.fromCodePoint(parseInt(code, 16));
-    })
     //   - order by updatedAt, desc
     // - carried comments into the object for render
-    res.render("edit-post", { post, userId, csrfToken: req.csrfToken(), comments, emojis });
+    res.render("edit-post", {
+      post,
+      userId,
+      csrfToken: req.csrfToken(),
+      comments,
+      emojis: realEmojis,
+    });
   })
 );
+
+function countEmojis(params) {
+  
+}
 
 router.delete(
   "/:id",
