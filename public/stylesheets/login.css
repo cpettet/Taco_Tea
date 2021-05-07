@@ -174,3 +174,8 @@ select {
     margin:0.5rem;
     text-align:center
 }
+
+.demo {
+    margin: 0.5rem;
+    background-color: red;
+}

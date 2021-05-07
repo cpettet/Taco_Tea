@@ -54,6 +54,12 @@ router.post(
   })
 );
 
+router.get("/demo", csrfProtection, asyncHandler(async (req, res) => {
+  const demoUser = await User.findByPk(2);
+  loginUser(req, res, demoUser);
+  res.json({ status: "ok" });
+}))
+
 router.get(
   "/login",
   csrfProtection,
