@@ -58,5 +58,9 @@ block content
     button(name="comment-submit")#add-comment Add Comment
     for comment in comments
       div.comments-container
-        p=comment.content
-        p=comment.User.user_name
+        div#comment-content=comment.content
+        div#comment-footer
+          div#comment-user posted by: 
+            span#user-name= comment.User.user_name
+          div#comment-time time:
+            span#user-time= comment.createdAt

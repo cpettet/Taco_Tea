@@ -179,3 +179,36 @@ select {
     margin: 0.5rem;
     background-color: red;
 }
+
+.comments-container{
+    display:flex;
+    flex-direction: column;
+    background-color:lightgoldenrodyellow;
+    border: .5px solid black;
+    border-radius: .3rem;
+    margin-top: 1rem;
+}
+
+#comment-content{
+    font-size: 1rem;
+    margin: 1rem
+}
+
+#comment-user{
+    font-size: .8rem;
+    margin: 1rem;
+}
+
+#user-name{
+    color:green
+}
+#comment-footer{
+    display:flex;
+    flex-direction: row;
+}
+#comment-time{
+    font-size: x-small;
+}
+#user-time{
+    font-size: x-small;
+}
