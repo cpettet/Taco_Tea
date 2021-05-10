@@ -11,6 +11,7 @@ const usersRouter = require("./routes/users");
 const postRouter = require("./routes/posts");
 const commentsRouter = require("./routes/comments");
 const likesRouter = require("./routes/likes");
+const aboutRouter = require("./routes/about")
 const { restoreUser } = require("./auth");
 const cors = require("cors");
 
@@ -48,6 +49,7 @@ app.use("/users", usersRouter);
 app.use("/posts", postRouter);
 app.use("/comments", commentsRouter);
 app.use("/likes", likesRouter);
+app.use("/about", aboutRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

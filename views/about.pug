@@ -1,0 +1,19 @@
+extends layout.pug
+
+block content
+    include navbar.pug
+    link(rel='stylesheet' href='/stylesheets/about.css')
+    h1(class="about-title") TacoTea: Meet the Team!
+    div(class="about-outer-container")
+        div(class="about-inner-container")
+            div(class="about-person")
+                a(href='https://github.com/handlerda') Davis Handler
+                img(class="person-img" alt="Avatar" src="https://avatars.githubusercontent.com/u/48835180?v=4")
+        div(class="about-inner-container")
+            div(class="about-person")
+                a(href='https://github.com/cpettet') Christian Pettet
+                img(class="person-img" alt="Avatar" src="https://avatars.githubusercontent.com/u/71297280?v=4")
+        div(class="about-inner-container")
+            div(class="about-person")
+                a(href='https://github.com/lyjimmy1') Jimmy Ly
+                img(class="person-img" alt="Avatar" src="https://avatars.githubusercontent.com/u/77124092?v=4")
