@@ -1,0 +1,16 @@
+extends layout
+
+append head
+    link(rel='stylesheet' href='/stylesheets/splash.css')
+
+block content
+    header
+        nav
+            img(src="/logo.png", alt="Taco Image", width="300px", height="300px")
+    div.content-container
+        div.box-container
+            h1 Taco Tea is a place to write, read, and eat
+            main Maybe this will be where the logo will go?
+            h3 Satisfy your cravings and share your love for tacos!
+            a(href='/users/login')
+                button(type="button") Get Started

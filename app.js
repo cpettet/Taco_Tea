@@ -12,6 +12,7 @@ const postRouter = require("./routes/posts");
 const commentsRouter = require("./routes/comments");
 const likesRouter = require("./routes/likes");
 const aboutRouter = require("./routes/about")
+const splashRouter = require("./routes/splash")
 const { restoreUser } = require("./auth");
 const cors = require("cors");
 
@@ -50,6 +51,7 @@ app.use("/posts", postRouter);
 app.use("/comments", commentsRouter);
 app.use("/likes", likesRouter);
 app.use("/about", aboutRouter);
+app.use("/splash", splashRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
