@@ -1,5 +1,4 @@
 window.addEventListener("DOMContentLoaded", async () => {
-  console.log("Hello from the frontend");
 
   const isRecipe = document.querySelector("#postType");
   const recipeContainer = document.querySelector(".recipe");
@@ -44,8 +43,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     const isComments = formData.get("isComments");
     const isEmojis = formData.get("isEmojis");
     const doc_body = formData.get("body");
-    console.log(isComments);
-    console.log(isEmojis);
     const payload = {
       title,
       post_type,
@@ -86,7 +83,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   allowComments.addEventListener("change", (e) => {
     const isComments = allowComments.value;
-    console.log(typeof isComments);
     if (isComments === "true") {
       commentsContainer.hidden = false;
     } else {
@@ -111,7 +107,6 @@ window.addEventListener("DOMContentLoaded", async () => {
         },
         body: JSON.stringify(payload),
       });
-      console.log(response);
       if (response.status !== 200) {
         throw new Error(`there was an error! The comment could not be added`);
       }
@@ -131,7 +126,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     const emojiButton = container.childNodes[0];
 
     emojiButton.addEventListener("click", async (e) => {
-      console.log(e);
       e.preventDefault();
       try {
         const payload = {
@@ -151,9 +145,8 @@ window.addEventListener("DOMContentLoaded", async () => {
         const data = await response.json();
 
         e.target.nextElementSibling.innerText = data.count;
-        console.log(data);
       } catch (error) {
-        console.log(`there was an error`);
+        console.error(`there was an error`);
       }
     });
   });
@@ -191,5 +184,4 @@ const getEmojis = async (postId) => {
       // }
     });
   });
-  console.log(emojis, count);
 };

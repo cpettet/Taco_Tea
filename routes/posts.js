@@ -119,8 +119,6 @@ router.get(
 
     // loop over total likes
     // check the emoji type
-    //const emojis = Object.entries(emojiObj);
-    //console.log(totalLikes.toJSON());
     totalLikes.forEach((emoji) => {
       const emojiSymbol = emoji.dataValues.emoji;
       if (emojiObj[emojiSymbol] === undefined) {
@@ -128,7 +126,6 @@ router.get(
       }
       emojiObj[emojiSymbol]["count"]++;
     });
-    console.log(emojiObj);
     // array of dictionaries, ex. [{ '👎': 4 }]
     const userId = req.session.auth.userId;
     const post = await Post.findByPk(postId);
@@ -151,8 +148,6 @@ router.get(
     });
   })
 );
-
-function countEmojis(params) {}
 
 router.delete(
   "/:id",
@@ -182,9 +177,6 @@ router.put(
       isVegan,
       isGlutenFree,
     } = req.body;
-    console.log(`here come da logs`);
-    console.log(isComments);
-    console.log(isEmojis);
     const author_id = req.session.auth.userId;
     const post = await Post.findByPk(req.params.id);
     await post.update({

@@ -24,10 +24,7 @@ router.post(
   "/",
   requireAuth,
   asyncHandler(async (req, res) => {
-    console.log(`did this run`);
     const { content, post_id } = req.body;
-    console.log(content, post_id);
-    console.log(typeof post_id);
     const author_id = req.session.auth.userId;
     try {
       const comment = await Comment.create({
