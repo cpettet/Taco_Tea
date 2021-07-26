@@ -11,8 +11,8 @@ block content
       div.selection.post-type
         label Change the post type
         select(name="postType", id="postType", required, value= post.post_type)
-          option(value="story") Story
-          option(value="recipe") Recipe
+          option(value="story", selected= post.post_type == 'story') Story
+          option(value="recipe", selected= post.post_type == 'recipe') Recipe
       .selection.comments-select
         label Allow user comments?
         select(name="isComments", required)
@@ -25,7 +25,7 @@ block content
           option(value="false", selected=(false === post.likes)) No
       textarea(name="body", required)= post.body
       input(type="hidden", name="_csrf", value= csrfToken)
-      div(class="recipe" hidden)
+      div(class="recipe" hidden= post.post_type == "story")
         div.input-group
           .selection.vegetarian
             label Is this recipe vegetarian?

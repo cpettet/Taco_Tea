@@ -165,9 +165,10 @@ router.put(
   "/:id",
   requireAuth,
   asyncHandler(async (req, res) => {
+    console.log("Request body:", req.body)
     const {
       title,
-      postType,
+      post_type,
       isComments,
       isEmojis,
       body,
@@ -181,7 +182,7 @@ router.put(
     const post = await Post.findByPk(req.params.id);
     await post.update({
       author_id,
-      post_type: postType,
+      post_type,
       title,
       body,
       likes: isEmojis,
