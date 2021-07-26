@@ -43,12 +43,18 @@ window.addEventListener("DOMContentLoaded", async () => {
     const isComments = formData.get("isComments");
     const isEmojis = formData.get("isEmojis");
     const doc_body = formData.get("body");
+    const isVegetarian = formData.get("isVegetarian")
+    const isVegan = formData.get("isVegan")
+    const isGlutenFree = formData.get("isGlutenFree")
     const payload = {
       title,
       post_type,
-      isComments,
-      isEmojis,
+      isComments: isComments === true,
+      isEmojis: isEmojis === true,
       body: doc_body,
+      isVegetarian: isVegetarian === true,
+      isVegan: isVegan === true,
+      isGlutenFree: isGlutenFree === true,
     };
     try {
       const res = await fetch(`/posts/${postId}`, {
@@ -161,27 +167,6 @@ const getEmojis = async (postId) => {
     container.childNodes.forEach((e) => {
       if (e.id === "emoji") emojis.push(e.innerText);
       if (e.id === "count") count.push(e.innerText);
-      // try {
-      //   const payload = {
-      //     emoji: e.innerText,
-      //     post_id: postId,
-      //   };
-      //   const response = await fetch("/likes", {
-      //     method: "post",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(payload),
-      //   });
-      //   if (response.status !== 200) {
-      //     throw new Error("there was an error");
-      //   }
-      //   const data = await response.json();
-      //   e.innerText = data.count;
-      //   console.log(data);
-      // } catch (error) {
-      //   console.log(`there was an error`);
-      // }
     });
   });
 };

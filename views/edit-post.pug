@@ -6,6 +6,10 @@ block content
   script(src="/javascripts/form.js")
 
   form.form-box
+    div.test
+      p Here is the post contents
+        each val, key in post.dataValues
+          li= key + ":" + val
     div.input-group
       input(type="text", name="title" value= post.title)
       div.selection.post-type
@@ -29,18 +33,18 @@ block content
         div.input-group
           .selection.vegetarian
             label Is this recipe vegetarian?
-            select(name="isVegetarian", required)
-              option(value="true" default) Yes
+            select(name="isVegetarian", id="isVegetarian", required)
+              option(value="true", default) Yes
               option(value="false") No
           .selection.vegan
             label Is this recipe vegan?
-            select(name="isVegan", required)
-              option(value="true" default) Yes
+            select(name="isVegan", id="isVegan", required)
+              option(value="true", default) Yes
               option(value="false") No
           .selection.gluten-free
             label Is this recipe gluten free?
-            select(name="isGlutenFree", required)
-              option(value="true" default) Yes
+            select(name="isGlutenFree", id="isGlutenFree", required)
+              option(value="true", default) Yes
               option(value="false") No
       div(hidden).error-box
       .crud-buttons

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { csrfProtection, asyncHandler } = require("./utils");
-const { User, Post, Comment, Sequelize, Like } = require("../db/models");
+const { User, Post, Comment, Sequelize, Like, Recipe } = require("../db/models");
 const { requireAuth } = require("../auth");
 const Op = Sequelize.Op;
 
@@ -59,6 +59,7 @@ router.post(
   })
 );
 
+// GET /posts/:id
 router.get(
   "/:id",
   requireAuth,
@@ -149,6 +150,7 @@ router.get(
   })
 );
 
+// DELETE /posts/:id
 router.delete(
   "/:id",
   requireAuth,
@@ -161,6 +163,7 @@ router.delete(
   })
 );
 
+// PUT /posts/:id
 router.put(
   "/:id",
   requireAuth,
@@ -180,6 +183,9 @@ router.put(
     } = req.body;
     const author_id = req.session.auth.userId;
     const post = await Post.findByPk(req.params.id);
+    if (post_type === 'recipe') {
+      // const recipe = await 
+    }
     await post.update({
       author_id,
       post_type,

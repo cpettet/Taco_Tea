@@ -17,6 +17,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: "Ingredients" },
       },
+      post_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: "Posts" },
+      },
       is_vegetarian: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
