@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       post_id: DataTypes.INTEGER,
+      body: DataTypes.STRING,
       ingredients_id: DataTypes.INTEGER,
       is_vegetarian: DataTypes.BOOLEAN,
       is_vegan: DataTypes.BOOLEAN,

@@ -1,7 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const { csrfProtection, asyncHandler } = require("./utils");
-const { User, Post, Comment, Sequelize, Like, Recipe } = require("../db/models");
+const {
+  User,
+  Post,
+  Comment,
+  Sequelize,
+  Like,
+  Recipe,
+} = require("../db/models");
 const { requireAuth } = require("../auth");
 const Op = Sequelize.Op;
 
@@ -40,12 +47,15 @@ router.post(
       body,
       recipeId,
       tagLinksId,
+      recipeName,
+      recipeBody,
       isVegetarian,
       isVegan,
       isGlutenFree,
     } = req.body;
+    console.log("What's your name?", recipeName)
     const author_id = req.session.auth.userId;
-    await Post.create({
+    const post = await Post.create({
       author_id,
       post_type: postType,
       title,
@@ -55,6 +65,17 @@ router.post(
       recipe_id: recipeId,
       tag_links_id: tagLinksId,
     });
+    if (postType === "recipe") {
+      const recipe = await Recipe.create({
+        name: recipeName,
+        post_id: post.id,
+        is_vegetarian: isVegetarian,
+        is_vegan: isVegan,
+        is_gluten_free: isGlutenFree,
+        body: recipeBody,
+      })
+      console.log("Recipe:", recipe)
+    }
     res.redirect("/");
   })
 );
@@ -129,7 +150,9 @@ router.get(
     });
     // array of dictionaries, ex. [{ '👎': 4 }]
     const userId = req.session.auth.userId;
-    const post = await Post.findByPk(postId);
+    const post = await Post.findByPk(postId, {
+      include: [{ model: Recipe }],
+    });
     // - grab all comments by post_id
     const comments = await Comment.findAll({
       where: {
@@ -168,7 +191,7 @@ router.put(
   "/:id",
   requireAuth,
   asyncHandler(async (req, res) => {
-    console.log("Request body:", req.body)
+    console.log("Request body:", req.body);
     const {
       title,
       post_type,
@@ -183,8 +206,23 @@ router.put(
     } = req.body;
     const author_id = req.session.auth.userId;
     const post = await Post.findByPk(req.params.id);
-    if (post_type === 'recipe') {
-      // const recipe = await 
+    if (post_type === "recipe") {
+      try {
+        const recipe = await Recipe.findOne({
+          where: {
+            post_id: {
+              [Op.eq]: post.id,
+            },
+          },
+        });
+        await recipe.update({
+          is_vegetarian: isVegetarian,
+          is_vegan: isVegan,
+          is_gluten_free: isGlutenFree,
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
     await post.update({
       author_id,

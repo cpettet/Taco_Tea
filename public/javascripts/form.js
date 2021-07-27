@@ -1,5 +1,4 @@
 window.addEventListener("DOMContentLoaded", async () => {
-
   const isRecipe = document.querySelector("#postType");
   const recipeContainer = document.querySelector(".recipe");
 
@@ -43,18 +42,23 @@ window.addEventListener("DOMContentLoaded", async () => {
     const isComments = formData.get("isComments");
     const isEmojis = formData.get("isEmojis");
     const doc_body = formData.get("body");
-    const isVegetarian = formData.get("isVegetarian")
-    const isVegan = formData.get("isVegan")
-    const isGlutenFree = formData.get("isGlutenFree")
+    const name = formData.get("recipeName");
+    const isVegetarian = formData.get("isVegetarian");
+    const isVegan = formData.get("isVegan");
+    const isGlutenFree = formData.get("isGlutenFree");
+    const recipe_body = formData.get("recipeBody");
+    console.log("Here's the name:", name)
     const payload = {
       title,
       post_type,
       isComments: isComments === true,
       isEmojis: isEmojis === true,
       body: doc_body,
+      name,
       isVegetarian: isVegetarian === true,
       isVegan: isVegan === true,
       isGlutenFree: isGlutenFree === true,
+      recipe_body,
     };
     try {
       const res = await fetch(`/posts/${postId}`, {
