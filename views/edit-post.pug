@@ -60,9 +60,15 @@ block content
     button(name="comment-submit")#add-comment Add Comment
     for comment in comments
       div.comments-container
-        div#comment-content=comment.content
+        div(class= (userId === comment.author_id ? "hidden" : ""))#comment-content=comment.content
         div#comment-footer
-          div#comment-user posted by:
+          div(id= "comment-user", class= (userId === comment.author_id ? "hidden" : ""))
+            span#comment-user posted by
             span#user-name= comment.User.user_name
+          div
+            textarea.comment-field(name="comment", id= comment.id, class= (userId === comment.author_id ? "" : "hidden"))= comment.content
+          div(class= (userId === comment.author_id ? "" : "hidden")).comment-buttons-container
+            button(id= comment.id).comment-edit.comment-buttons Modify
+            button(id= comment.id).comment-delete.comment-buttons Delete
           div#comment-time 
             span#user-time= comment.createdAt
