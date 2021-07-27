@@ -2,6 +2,12 @@ window.addEventListener("DOMContentLoaded", async () => {
   const isRecipe = document.querySelector("#postType");
   const recipeContainer = document.querySelector(".recipe");
 
+  if (isRecipe.value === "recipe") {
+    recipeContainer.hidden = false;
+  } else {
+    recipeContainer.hidden = true;
+  }
+
   isRecipe.addEventListener("change", (e) => {
     const value = e.target.value;
     if (value === "recipe") {
