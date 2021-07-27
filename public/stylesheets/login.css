@@ -112,6 +112,34 @@ select {
     margin-top: 1rem;
 }
 
+.comment-buttons{
+    transition: ease;
+    width: 54px;
+    height: 20px;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.comment-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 25%;
+    align-content: flex-end;
+    flex-wrap: nowrap;
+}
+
+.comment-field {
+    width: 29rem;
+    height: 4rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: lightyellow;
+    resize: none;
+    margin: 1rem;
+}
 
 #post-edit{
     background-color:lightgreen;
@@ -203,10 +231,24 @@ select {
     color:green
 }
 #comment-footer{
-    display:flex;
+    display: flex;
     flex-direction: row;
-    justify-content: space-between
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: flex-end;
+    flex-grow: 2;
+    justify-content: space-between;
 }
+
+.comment-edit {
+    background-color:lightgreen;
+}
+
+.comment-delete {
+    background-color: red;
+    color:white
+}
+
 #comment-time{
     font-family: monospace;
     font-size: x-small;

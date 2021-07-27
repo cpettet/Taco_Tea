@@ -180,7 +180,6 @@ router.put(
   "/:id",
   requireAuth,
   asyncHandler(async (req, res) => {
-    console.log("Request body of put:", req.body);
     const {
       title,
       post_type,
@@ -225,7 +224,7 @@ router.put(
           });
         }
       } catch (error) {
-        console.error("\nWe have an error", error);
+        res.json({error, status: 500});
       }
     }
     await post.update({
