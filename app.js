@@ -55,9 +55,11 @@ app.use("/splash", splashRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
-
+  // next(createError(404));
+  res.status(404).render("error", {message:"404! This page does not exist!"})
 });
+
+
 
 // error handler
 app.use(function (err, req, res, next) {
