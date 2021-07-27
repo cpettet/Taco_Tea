@@ -10,9 +10,9 @@ block content
       input(type="text", name="title" value= post.title)
       div.selection.post-type
         label Change the post type
-        select(name="postType", id="postType", required, value= post.post_type)
-          option(value="story", selected= post.post_type == 'story') Story
-          option(value="recipe", selected= post.post_type == 'recipe') Recipe
+        select(name="postType", id="postType", required)
+          option(value="story", selected= (post.post_type == 'story')) Story
+          option(value="recipe", selected= (post.post_type == 'recipe')) Recipe
       .selection.comments-select
         label Allow user comments?
         select(name="isComments", required)
@@ -25,7 +25,7 @@ block content
           option(value="false", selected=(false === post.likes)) No
       textarea(name="body", required)= post.body
       input(type="hidden", name="_csrf", value= csrfToken)
-      div(class="recipe" hidden= post.post_type == "story")
+      div(class="recipe")
         div.input-group
           input(type="text", name="recipeName", value= post.Recipe ? post.Recipe.name : "", placeholder="Recipe Name")
           .selection.vegetarian
@@ -56,7 +56,7 @@ block content
 
   div(hidden).comment-box
   form.form-box.comment-box
-    textarea(name="comment", placeholder= "Lettuce know what you want add")#comment-text-area
+    textarea(name="comment", placeholder= "Lettuce know what you want to add")#comment-text-area
     button(name="comment-submit")#add-comment Add Comment
     for comment in comments
       div.comments-container
