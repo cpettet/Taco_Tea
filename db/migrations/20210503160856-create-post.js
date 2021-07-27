@@ -26,9 +26,6 @@ module.exports = {
       comments: {
         type: Sequelize.BOOLEAN
       },
-      recipe_id: {
-        type: Sequelize.INTEGER
-      },
       tag_links_id: {
         type: Sequelize.INTEGER
       },

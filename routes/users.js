@@ -72,11 +72,8 @@ router.post(
   "/login",
   csrfProtection,
   asyncHandler(async (req, res) => {
-    console.log(req.body);
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
-    console.log(user);
-    console.log(user.hashed_password);
     if (user) {
       const correctPassword = await comparePassword(
         password,

@@ -54,6 +54,11 @@ body{
     justify-content: center;
     display: flex;
     padding: 1rem;
+    box-sizing: content-box;
+  }
+
+  .about-link {
+    margin: 0.5rem;
   }
 
   .about-inner-container {
