@@ -5,12 +5,41 @@ append head
 
 block content
     header
-        nav
-            img(src="/logo.png", alt="Taco Image", width="300px", height="300px")
+        nav.nav-container
+            img(src="/logo.png", alt="Taco Image", width="30px", height="30px")
+            div.nav-items
+                a(href='/users/login') Sign In
+                a(href='/users/new')
+                    button(type="button") Get Started
     div.content-container
         div.box-container
             h1 Taco Tea is a place to write, read, and eat
-            main Maybe this will be where the logo will go?
+            img.taco-pic(src="/tacoStache.png", alt="Taco image")
             h3 Satisfy your cravings and share your love for tacos!
             a(href='/users/login')
-                button(type="button") Get Started
+                button(type="button") Start Salivating
+    div.line
+    div.post-box-container
+        div.splash-post-container
+            for post in posts
+                div.splash-number-container
+                    p.splash-post-number= `0${post.order}`
+                div.splash-post-box
+                    h2.splash-post-title= post.title
+                    footer.splash-post-date= post.newDate
+    footer.splash-footer
+        div.christian-div
+            a(href="https://www.linkedin.com/in/christianpettet/")
+                i(class="fab fa-linkedin-in fa-2x big-link")
+            a(href="https://github.com/cpettet")
+                i(class="fab fa-github-square fa-2x big-link")  Christian Pettet
+        div.davis-div
+            a(href="https://www.linkedin.com/in/davis-handler/")
+                i(class="fab fa-linkedin-in fa-2x big-link")
+            a(href="https://github.com/handlerda")
+                i(class="fab fa-github-square fa-2x big-link")  Davis Handler
+        div.jimmy-div
+            a(href="https://www.linkedin.com/in/jimmy-ly-22b925134")
+                i(class="fab fa-linkedin-in fa-2x big-link")
+            a(href="https://github.com/lyjimmy1")
+                i(class="fab fa-github-square fa-2x big-link")  Jimmy Ly
