@@ -12,7 +12,6 @@ router.post(
   asyncHandler(async (req, res) => {
     const { emoji, post_id } = req.body;
     const author_id = req.session.auth.userId;
-    console.log(emoji, post_id);
     //todos
     //insert emoji
     try {
@@ -29,7 +28,6 @@ router.post(
           post_id,
         },
       });
-      console.log(count);
       res.json({
         emoji,
         count,
@@ -37,7 +35,7 @@ router.post(
 
       //select sum(emoji) from like where story_id = x
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   })
 );

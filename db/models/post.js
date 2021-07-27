@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
       body: DataTypes.TEXT,
       likes: DataTypes.BOOLEAN,
       comments: DataTypes.BOOLEAN,
-      recipe_id: DataTypes.INTEGER,
       tag_links_id: DataTypes.INTEGER,
     },
     {}
@@ -19,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     Post.hasMany(models.Comment, { foreignKey: "post_id" });
     Post.belongsTo(models.User, { foreignKey: "author_id" });
     Post.hasMany(models.Like, { foreignKey: "post_id" });
+    Post.hasOne(models.Recipe, { foreignKey: "post_id" });
   };
   return Post;
 };

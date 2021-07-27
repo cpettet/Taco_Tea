@@ -4,6 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     "Recipe",
     {
       name: DataTypes.STRING,
+      post_id: DataTypes.INTEGER,
+      body: DataTypes.STRING,
       ingredients_id: DataTypes.INTEGER,
       is_vegetarian: DataTypes.BOOLEAN,
       is_vegan: DataTypes.BOOLEAN,
@@ -14,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Recipe.associate = function (models) {
     // associations can be defined here
     Recipe.hasMany(models.Ingredient, { foreignKey: "recipe_id" });
+    Recipe.belongsTo(models.Post, { foreignKey: "post_id" });
   };
   return Recipe;
 };

@@ -1,6 +1,4 @@
 window.addEventListener("DOMContentLoaded", async () => {
-  console.log("Hello from the frontend");
-
   const isRecipe = document.querySelector("#postType");
   const recipeContainer = document.querySelector(".recipe");
 
@@ -44,14 +42,24 @@ window.addEventListener("DOMContentLoaded", async () => {
     const isComments = formData.get("isComments");
     const isEmojis = formData.get("isEmojis");
     const doc_body = formData.get("body");
-    console.log(isComments);
-    console.log(isEmojis);
+    const name = formData.get("recipeName");
+    const isVegetarian = formData.get("isVegetarian");
+    const isVegan = formData.get("isVegan");
+    const isGlutenFree = formData.get("isGlutenFree");
+    const recipe_body = formData.get("recipeBody");
+    console.log("Here's the recipe name:", name);
+    console.log("Here's the recipe body:", recipe_body);
     const payload = {
       title,
       post_type,
       isComments,
       isEmojis,
       body: doc_body,
+      name,
+      isVegetarian,
+      isVegan,
+      isGlutenFree,
+      recipe_body,
     };
     try {
       const res = await fetch(`/posts/${postId}`, {
@@ -76,7 +84,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   //listen for allowed comments && likes
   const allowComments = document.querySelector("select[name='isComments']");
+  const allowEmojis = document.querySelector("select[name='isEmojis']");
   const commentsContainer = document.querySelector(".form-box.comment-box");
+  const emojisContainer = document.querySelector(".emoji-box");
 
   if (allowComments.value === "true") {
     commentsContainer.hidden = false;
@@ -84,13 +94,27 @@ window.addEventListener("DOMContentLoaded", async () => {
     commentsContainer.hidden = true;
   }
 
+  if (allowEmojis.value === "true") {
+    emojisContainer.hidden = false;
+  } else {
+    emojisContainer.hidden = true;
+  }
+
   allowComments.addEventListener("change", (e) => {
     const isComments = allowComments.value;
-    console.log(typeof isComments);
     if (isComments === "true") {
       commentsContainer.hidden = false;
     } else {
       commentsContainer.hidden = true;
+    }
+  });
+
+  allowEmojis.addEventListener("change", (e) => {
+    const isEmojis = allowEmojis.value;
+    if (isEmojis === "true") {
+      emojisContainer.className = "emoji-box";
+    } else {
+      emojisContainer.className = "hidden";
     }
   });
 
@@ -111,7 +135,6 @@ window.addEventListener("DOMContentLoaded", async () => {
         },
         body: JSON.stringify(payload),
       });
-      console.log(response);
       if (response.status !== 200) {
         throw new Error(`there was an error! The comment could not be added`);
       }
@@ -131,7 +154,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     const emojiButton = container.childNodes[0];
 
     emojiButton.addEventListener("click", async (e) => {
-      console.log(e);
       e.preventDefault();
       try {
         const payload = {
@@ -151,9 +173,8 @@ window.addEventListener("DOMContentLoaded", async () => {
         const data = await response.json();
 
         e.target.nextElementSibling.innerText = data.count;
-        console.log(data);
       } catch (error) {
-        console.log(`there was an error`);
+        console.error(`there was an error`);
       }
     });
   });
@@ -168,28 +189,6 @@ const getEmojis = async (postId) => {
     container.childNodes.forEach((e) => {
       if (e.id === "emoji") emojis.push(e.innerText);
       if (e.id === "count") count.push(e.innerText);
-      // try {
-      //   const payload = {
-      //     emoji: e.innerText,
-      //     post_id: postId,
-      //   };
-      //   const response = await fetch("/likes", {
-      //     method: "post",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(payload),
-      //   });
-      //   if (response.status !== 200) {
-      //     throw new Error("there was an error");
-      //   }
-      //   const data = await response.json();
-      //   e.innerText = data.count;
-      //   console.log(data);
-      // } catch (error) {
-      //   console.log(`there was an error`);
-      // }
     });
   });
-  console.log(emojis, count);
 };

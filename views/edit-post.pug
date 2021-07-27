@@ -11,8 +11,8 @@ block content
       div.selection.post-type
         label Change the post type
         select(name="postType", id="postType", required, value= post.post_type)
-          option(value="story") Story
-          option(value="recipe") Recipe
+          option(value="story", selected= post.post_type == 'story') Story
+          option(value="recipe", selected= post.post_type == 'recipe') Recipe
       .selection.comments-select
         label Allow user comments?
         select(name="isComments", required)
@@ -25,23 +25,25 @@ block content
           option(value="false", selected=(false === post.likes)) No
       textarea(name="body", required)= post.body
       input(type="hidden", name="_csrf", value= csrfToken)
-      div(class="recipe" hidden)
+      div(class="recipe" hidden= post.post_type == "story")
         div.input-group
+          input(type="text", name="recipeName", value= post.Recipe.name, placeholder="Recipe Name")
           .selection.vegetarian
             label Is this recipe vegetarian?
-            select(name="isVegetarian", required)
-              option(value="true" default) Yes
-              option(value="false") No
+            select(name="isVegetarian", id="isVegetarian", required)
+              option(value="true", default, selected=(true === post.Recipe.is_vegetarian)) Yes
+              option(value="false", selected=(false === post.Recipe.is_vegetarian)) No
           .selection.vegan
             label Is this recipe vegan?
-            select(name="isVegan", required)
-              option(value="true" default) Yes
-              option(value="false") No
+            select(name="isVegan", id="isVegan", required)
+              option(value="true", default, selected=(true === post.Recipe.is_vegan)) Yes
+              option(value="false", selected=(false === post.Recipe.is_vegan)) No
           .selection.gluten-free
             label Is this recipe gluten free?
-            select(name="isGlutenFree", required)
-              option(value="true" default) Yes
-              option(value="false") No
+            select(name="isGlutenFree", id="isGlutenFree", required)
+              option(value="true", default, selected=(true === post.Recipe.is_gluten_free)) Yes
+              option(value="false", selected=(false === post.Recipe.is_gluten_free)) No
+          textarea(name="recipeBody", placeholder="Give someone a taco, they eat for a day. Teach them its recipe, they eat for a lifetime.", required)= post.Recipe.body
       div(hidden).error-box
       .crud-buttons
         button#post-edit.edit-buttons Modify
@@ -49,8 +51,8 @@ block content
       .emoji-box
         for emoji in emojis
           div(name= emoji.symbol).emoji-container
-            button(name= emoji.symbol)#emoji= emoji.symbol
-            div#count= emoji.count
+            button(name= emoji.symbol, hidden= (post.likes === false))#emoji= emoji.symbol
+            div(id= "count", hidden= (post.likes === false))= emoji.count
 
   div(hidden).comment-box
   form.form-box.comment-box
