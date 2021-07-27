@@ -47,17 +47,16 @@ window.addEventListener("DOMContentLoaded", async () => {
     const isVegan = formData.get("isVegan");
     const isGlutenFree = formData.get("isGlutenFree");
     const recipe_body = formData.get("recipeBody");
-    console.log("Here's the name:", name)
     const payload = {
       title,
       post_type,
-      isComments: isComments === true,
-      isEmojis: isEmojis === true,
+      isComments,
+      isEmojis,
       body: doc_body,
       name,
-      isVegetarian: isVegetarian === true,
-      isVegan: isVegan === true,
-      isGlutenFree: isGlutenFree === true,
+      isVegetarian,
+      isVegan,
+      isGlutenFree,
       recipe_body,
     };
     try {
@@ -83,6 +82,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   //listen for allowed comments && likes
   const allowComments = document.querySelector("select[name='isComments']");
+  const allowEmojis = document.querySelector("select[name=isEmojis']");
   const commentsContainer = document.querySelector(".form-box.comment-box");
 
   if (allowComments.value === "true") {
