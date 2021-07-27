@@ -47,6 +47,8 @@ window.addEventListener("DOMContentLoaded", async () => {
     const isVegan = formData.get("isVegan");
     const isGlutenFree = formData.get("isGlutenFree");
     const recipe_body = formData.get("recipeBody");
+    console.log("Here's the recipe name:", name);
+    console.log("Here's the recipe body:", recipe_body);
     const payload = {
       title,
       post_type,
@@ -82,13 +84,20 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   //listen for allowed comments && likes
   const allowComments = document.querySelector("select[name='isComments']");
-  const allowEmojis = document.querySelector("select[name=isEmojis']");
+  const allowEmojis = document.querySelector("select[name='isEmojis']");
   const commentsContainer = document.querySelector(".form-box.comment-box");
+  const emojisContainer = document.querySelector(".emoji-box");
 
   if (allowComments.value === "true") {
     commentsContainer.hidden = false;
   } else {
     commentsContainer.hidden = true;
+  }
+
+  if (allowEmojis.value === "true") {
+    emojisContainer.hidden = false;
+  } else {
+    emojisContainer.hidden = true;
   }
 
   allowComments.addEventListener("change", (e) => {
@@ -97,6 +106,15 @@ window.addEventListener("DOMContentLoaded", async () => {
       commentsContainer.hidden = false;
     } else {
       commentsContainer.hidden = true;
+    }
+  });
+
+  allowEmojis.addEventListener("change", (e) => {
+    const isEmojis = allowEmojis.value;
+    if (isEmojis === "true") {
+      emojisContainer.className = "emoji-box";
+    } else {
+      emojisContainer.className = "hidden";
     }
   });
 

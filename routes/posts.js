@@ -87,17 +87,6 @@ router.get(
   csrfProtection,
   asyncHandler(async (req, res) => {
     const postId = req.params.id;
-    const emojiCodes = [
-      "1F44D", // thumbs-up
-      "1F44E", // thumbs-down
-      "1F525", // fire
-      "1F4A9", // poop
-      "1F4A6", // water
-      "1F32E", // taco
-      "1F389", // confetti
-      "1F920", // sombrero
-    ];
-    const realEmojis = ["👍", "👎", "🔥", "💩", "💦", "🌮", "🎉", "🤠"];
     const emojiObj = {
       "👍": {
         symbol: "👍",
@@ -152,7 +141,9 @@ router.get(
     const userId = req.session.auth.userId;
     const post = await Post.findByPk(postId, {
       include: [{ model: Recipe }],
+      nest: true,
     });
+    console.log("Here is the post:", post)
     // - grab all comments by post_id
     const comments = await Comment.findAll({
       where: {
@@ -200,9 +191,11 @@ router.put(
       body,
       recipeId,
       tagLinksId,
+      name,
       isVegetarian,
       isVegan,
       isGlutenFree,
+      recipe_body,
     } = req.body;
     const author_id = req.session.auth.userId;
     const post = await Post.findByPk(req.params.id);
@@ -216,9 +209,11 @@ router.put(
           },
         });
         await recipe.update({
+          name,
           is_vegetarian: isVegetarian,
           is_vegan: isVegan,
           is_gluten_free: isGlutenFree,
+          body: recipe_body,
         });
       } catch (error) {
         console.error(error);

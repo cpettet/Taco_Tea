@@ -6,10 +6,6 @@ block content
   script(src="/javascripts/form.js")
 
   form.form-box
-    div.test
-      p Here is the post contents
-        each val, key in post.dataValues
-          li= key + ":" + val
     div.input-group
       input(type="text", name="title" value= post.title)
       div.selection.post-type
@@ -31,21 +27,23 @@ block content
       input(type="hidden", name="_csrf", value= csrfToken)
       div(class="recipe" hidden= post.post_type == "story")
         div.input-group
+          input(type="text", name="recipeName", value= post.Recipe.name, placeholder="Recipe Name")
           .selection.vegetarian
             label Is this recipe vegetarian?
             select(name="isVegetarian", id="isVegetarian", required)
-              option(value="true", default) Yes
-              option(value="false") No
+              option(value="true", default, selected=(true === post.Recipe.is_vegetarian)) Yes
+              option(value="false", selected=(false === post.Recipe.is_vegetarian)) No
           .selection.vegan
             label Is this recipe vegan?
             select(name="isVegan", id="isVegan", required)
-              option(value="true", default) Yes
-              option(value="false") No
+              option(value="true", default, selected=(true === post.Recipe.is_vegan)) Yes
+              option(value="false", selected=(false === post.Recipe.is_vegan)) No
           .selection.gluten-free
             label Is this recipe gluten free?
             select(name="isGlutenFree", id="isGlutenFree", required)
-              option(value="true", default) Yes
-              option(value="false") No
+              option(value="true", default, selected=(true === post.Recipe.is_gluten_free)) Yes
+              option(value="false", selected=(false === post.Recipe.is_gluten_free)) No
+          textarea(name="recipeBody", placeholder="Give someone a taco, they eat for a day. Teach them its recipe, they eat for a lifetime.", required)= post.Recipe.body
       div(hidden).error-box
       .crud-buttons
         button#post-edit.edit-buttons Modify
