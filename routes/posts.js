@@ -143,6 +143,12 @@ router.get(
       include: [{ model: Recipe }],
       nest: true,
     });
+
+    if(post === null){
+      return res.render('error', {
+        message: "We're so sorry, this post does not exist"
+      })
+    }
     console.log("Here is the post:", post)
     // - grab all comments by post_id
     const comments = await Comment.findAll({
@@ -232,5 +238,10 @@ router.put(
     res.json({ update: true, post_id: post.id });
   })
 );
+
+router.get('/*', function(req, res){
+  console.log('404ing');
+  res.render('error', {message:"404, this page does not exist!"});
+});
 
 module.exports = router;
