@@ -53,8 +53,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     const isVegan = formData.get("isVegan");
     const isGlutenFree = formData.get("isGlutenFree");
     const recipe_body = formData.get("recipeBody");
-    console.log("Here's the recipe name:", name);
-    console.log("Here's the recipe body:", recipe_body);
     const payload = {
       title,
       post_type,
