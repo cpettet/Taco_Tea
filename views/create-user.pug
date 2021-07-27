@@ -11,3 +11,5 @@ block content
             button(type="submit") Create User
             p: a(href='/users/login') Already have an account?
             p: a(href="/users/demo").demo DEMO USER
+            if error
+                p= error

@@ -42,23 +42,38 @@ router.post(
       // hash the password
       const hashedPass = await hashPassword(password);
       // bring in the user from the db schema
-      const newUser = await User.create({
-        user_name: username,
-        email,
-        hashed_password: hashedPass,
-      });
-      loginUser(req, res, newUser);
-      res.redirect("/");
-      // insert the new user in the db
+      try {
+        const newUser = await User.create({
+          user_name: username,
+          email,
+          hashed_password: hashedPass,
+        });
+        loginUser(req, res, newUser);
+        res.redirect("/");
+        // insert the new user in the db
+      } catch (error) {
+        console.log(`here comes the error`, error);
+        res.render("create-user", {
+          csrfToken: req.csrfToken(),
+          error:
+            "Woops there is an error. It appears that you used an email or username that is in our database. Can you try a new email or username",
+          username,
+          email,
+        });
+      }
     }
   })
 );
 
-router.get("/demo", csrfProtection, asyncHandler(async (req, res) => {
-  const demoUser = await User.findByPk(2);
-  loginUser(req, res, demoUser);
-  res.json({ status: "ok" });
-}))
+router.get(
+  "/demo",
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const demoUser = await User.findByPk(2);
+    loginUser(req, res, demoUser);
+    res.json({ status: "ok" });
+  })
+);
 
 router.get(
   "/login",
