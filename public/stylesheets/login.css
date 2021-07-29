@@ -40,12 +40,13 @@ body {
 
 input {
   width: 70%;
+  height: 3.5vh;
   flex-direction: column;
   align-items: center;
   margin: 0 0 15px;
   box-sizing: border-box;
   box-shadow: 0 4px 0 rgba(0,0,0,0.1);
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 button[type="submit"]{
@@ -177,7 +178,14 @@ select {
 
 .demo {
     margin: 0.5rem;
-    background-color: red;
+    background-color: lightcoral;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.demo:hover{
+    background-color:red;
+    transition:ease;
 }
 
 .comments-container{

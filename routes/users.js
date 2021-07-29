@@ -101,7 +101,7 @@ router.post(
     } else {
       res.render("login", {
         csrfToken: req.csrfToken(),
-        error: "Login info incorrect",
+        error: "Email or password is incorrect",
       });
     }
   })

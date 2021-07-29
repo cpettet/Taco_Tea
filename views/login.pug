@@ -1,7 +1,7 @@
 extends layout.pug
 block content
-    header 
-        nav 
+    header
+        nav
             ul.nav-links
                 img(src="/logo.png", alt="Taco Image", width="300px", height="300px")
     link(rel='stylesheet' href='/stylesheets/login.css')
@@ -9,12 +9,13 @@ block content
     div.form-container
         form(action="/users/login", method="post").form-box
             .input-group
+                div(hidden).error-box
+                if error
+                    p= error
                 input(type="email", name="email" placeholder="Email" required)
                 input(type="password", name="password" placeholder="Password" required)
                 input(type="hidden", name="_csrf", value= csrfToken)
                 button(type="submit") Login
+                button.demo DEMO USER
                 p: a(href='/users/new') New account
-        button.demo DEMO USER
-    div(hidden).error-box
-    if error
-        p= error
+

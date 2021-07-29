@@ -1,0 +1,22 @@
+.splash-footer{
+    background-color: lightcoral;
+    height: 5vh;
+    justify-content: space-evenly;
+}
+.splash-footer-container{
+    padding-top: 7px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.christian-div > a{
+    margin-right: 5px;
+}
+
+.davis-div > a {
+    margin-right: 5px;
+}
+
+.jimmy-div > a{
+    margin-right: 5px;
+}

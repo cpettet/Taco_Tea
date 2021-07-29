@@ -4,6 +4,7 @@ append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
   link(rel="stylesheet" href="/stylesheets/navbar.css")
+  link(rel='stylesheet' href='/stylesheets/footer.css')
 
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
@@ -14,8 +15,8 @@ block content
     div.header-container
       h1 Taco Feed
     ul.cards
-      li.cards-item 
-        for post in posts 
+      li.cards-item
+        for post in posts
           div.card
             h2.post-title= post.title
             p.post-text= post.body
