@@ -53,7 +53,6 @@ router.post(
       isVegan,
       isGlutenFree,
     } = req.body;
-    console.log("What's your name?", recipeName)
     const author_id = req.session.auth.userId;
     const post = await Post.create({
       author_id,
@@ -73,8 +72,8 @@ router.post(
         is_vegan: isVegan,
         is_gluten_free: isGlutenFree,
         body: recipeBody,
-      })
-      console.log("Recipe:", recipe)
+      });
+      console.log("Recipe:", recipe);
     }
     res.redirect("/");
   })
@@ -143,6 +142,7 @@ router.get(
       include: [{ model: Recipe }],
       nest: true,
     });
+<<<<<<< HEAD
 
     if(post === null){
       return res.render('error', {
@@ -150,6 +150,8 @@ router.get(
       })
     }
     console.log("Here is the post:", post)
+=======
+>>>>>>> 6a43c34307abb204c9065c825d9843c65e24c167
     // - grab all comments by post_id
     const comments = await Comment.findAll({
       where: {
@@ -188,7 +190,6 @@ router.put(
   "/:id",
   requireAuth,
   asyncHandler(async (req, res) => {
-    console.log("Request body:", req.body);
     const {
       title,
       post_type,
@@ -214,15 +215,26 @@ router.put(
             },
           },
         });
-        await recipe.update({
-          name,
-          is_vegetarian: isVegetarian,
-          is_vegan: isVegan,
-          is_gluten_free: isGlutenFree,
-          body: recipe_body,
-        });
+        if (recipe) {
+          await recipe.update({
+            name,
+            is_vegetarian: isVegetarian,
+            is_vegan: isVegan,
+            is_gluten_free: isGlutenFree,
+            body: recipe_body,
+          });
+        } else {
+          await Recipe.create({
+            name,
+            post_id: post.id,
+            is_vegetarian: isVegetarian,
+            is_vegan: isVegan,
+            is_gluten_free: isGlutenFree,
+            body: recipe_body,
+          });
+        }
       } catch (error) {
-        console.error(error);
+        res.json({error, status: 500});
       }
     }
     await post.update({
