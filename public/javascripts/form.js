@@ -53,8 +53,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     const isVegan = formData.get("isVegan");
     const isGlutenFree = formData.get("isGlutenFree");
     const recipe_body = formData.get("recipeBody");
-    console.log("Here's the recipe name:", name);
-    console.log("Here's the recipe body:", recipe_body);
     const payload = {
       title,
       post_type,
@@ -124,9 +122,40 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  const deleteCommentButtons = document.querySelectorAll(".comment-delete");
+  deleteCommentButtons.forEach((button) => {
+    button.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const commentId = e.target.id;
+      await fetch(`/comments/${commentId}`, {
+        method: "DELETE",
+      });
+      window.location.replace(`/posts/${postId}`);
+    });
+  });
+
+  const modifyCommentButtons = document.querySelectorAll(".comment-edit")
+  modifyCommentButtons.forEach(button => {
+    button.addEventListener("click", async e => {
+      e.preventDefault();
+      const commentId = e.target.id;
+      const content = document.getElementById(commentId).value;
+      console.log("Content:", content)
+      await fetch(`/comments/${commentId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({content}),
+      });
+      window.location.replace(`/posts/${postId}`);
+    })
+  })
+
   const commentSubmit = document.querySelector("#add-comment");
   commentSubmit.addEventListener("click", async (e) => {
     e.preventDefault();
+    const postId = window.location.href.split("posts/")[1];
     //get commentBody value
     const content = document.querySelector("#comment-text-area").value;
     const payload = {
@@ -144,7 +173,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       if (response.status !== 200) {
         throw new Error(`there was an error! The comment could not be added`);
       }
-      window.location.replace("/");
+      window.location.replace(`/posts/${postId}`);
     } catch (error) {
       const errorBox = document.querySelector(".error-box");
       errorBox.hidden = false;

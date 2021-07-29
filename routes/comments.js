@@ -20,6 +20,52 @@ backend:
     - shows comment text if non-author
 */
 
+router.put(
+  "/:id",
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const commentId = req.params.id;
+    const authorId = req.session.auth.userId;
+    console.log("Request body:", req.body)
+    const content = req.body.content;
+    try {
+      const comment = await Comment.findByPk(commentId);
+      if (comment.author_id === authorId) {
+        await comment.update({
+          content,
+          updatedAt: new Date(),
+        });
+        res.json({ update: true, comment_id: comment.id });
+      } else {
+        res.json({ error: "Not your post", status: 403 });
+      }
+    } catch (error) {
+      res.json({ error, status: 500 });
+    }
+  })
+);
+
+router.delete(
+  "/:id",
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const commentId = req.params.id;
+    const authorId = req.session.auth.userId;
+    try {
+      const comment = await Comment.findByPk(commentId);
+      if (comment.author_id === authorId) {
+        await comment.destroy();
+        res.json({ deleted: true, comment_id: comment.id });
+      } else {
+        res.json({ error: "Not your post", status: 403 });
+      }
+    } catch (error) {
+      res.json({ error, status: 500 });
+    }
+
+  })
+)
+
 router.post(
   "/",
   requireAuth,
@@ -41,7 +87,5 @@ router.post(
     }
   })
 );
-
-
 
 module.exports = router;
