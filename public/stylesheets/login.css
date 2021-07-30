@@ -25,6 +25,7 @@ body {
     box-sizing: border-box;
     margin: 1rem;
     padding: 1rem;
+    margin-bottom: 5rem;
 }
 
 .input-group{
@@ -144,11 +145,25 @@ select {
 
 #post-edit{
     background-color:lightgreen;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+#post-edit:hover{
+    background-color: limegreen;
+    transition: ease;
 }
 
 #post-delete{
-    background-color: red;
-    color:white
+    background-color: rgb(241, 90, 90);
+    color:white;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+#post-delete:hover{
+    background-color: rgb(255, 0, 0);
+    transition: ease;
 }
 
 .comment-box.hidden{
