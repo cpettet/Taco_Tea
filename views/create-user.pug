@@ -1,6 +1,7 @@
 extends layout.pug
 block content 
     link(rel='stylesheet' href='/stylesheets/login.css')
+    script(src="/javascripts/login.js" type="module")
     form(action="/users", method="post").form-box
         div.input-group 
             input(type="text", name="username" value=username, placeholder="Username" required)
@@ -10,6 +11,6 @@ block content
             input(type="hidden", name="_csrf", value=csrfToken)
             button(type="submit") Create User
             p: a(href='/users/login') Already have an account?
-            p: a(href="/users/demo").demo DEMO USER
+            button.demo DEMO USER
             if error
                 p= error

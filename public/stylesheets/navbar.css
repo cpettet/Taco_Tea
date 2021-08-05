@@ -21,3 +21,13 @@ img {
   width: 341px;
   height: 199px;
 }
+
+.nav-link:hover {
+  color: lightcoral;
+  background-color: #FAFAD2;
+  border-radius: 100% 100% 0% 0%;
+}
+
+.link {
+  text-decoration: none;
+}

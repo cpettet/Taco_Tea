@@ -81,18 +81,24 @@ body{
   }
 
   .about-outer-container {
-    display:flex;
+    display: flex;
     align-items: center;
     margin-left: 1rem;
     flex-direction: column;
+    padding-bottom: 3rem;
   }
 
   .about-person{
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
+    width: 260px;
+    height: fit-content;
+    border-radius: 50%;
   }
 
   .person-img{
     border-radius: 50%;
+    width: auto;
+  }
+
+  .site-link {
+    margin: 0.5rem;
   }

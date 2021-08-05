@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Roboto", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -9,6 +9,7 @@ a {
 
 * {
   box-sizing: border-box;
+  font: 16px "Roboto", Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, a, ol, li, ul, div, span,

@@ -4,7 +4,7 @@ nav
   img(src="/logo.png", alt="Taco Image", width="300px", height="300px")
   div.navbar-container
     ul.nav-links
-      li: a(href="/") Home
-      li: a(href="/posts/new") Create a Post
-      li: a(href='/about') About Us
-      li: a(href="/users/logout") Logout
+      a.link(href="/"): li.nav-link Home
+      a.link(href="/posts/new"): li.nav-link Create a Post
+      a.link(href='/about'): li.nav-link About Us
+      a.link(href="/users/logout"): li.nav-link Logout

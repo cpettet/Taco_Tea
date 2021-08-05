@@ -55,6 +55,7 @@ body {
   justify-content: center;
   list-style: none;
   width: 80%;
+  padding-bottom: 3rem;
 }
 
 .cards-item {
