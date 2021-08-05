@@ -73,7 +73,6 @@ router.post(
         is_gluten_free: isGlutenFree,
         body: recipeBody,
       });
-      console.log("Recipe:", recipe);
     }
     res.redirect("/");
   })
@@ -148,7 +147,6 @@ router.get(
         message: "We're so sorry, this post does not exist"
       })
     }
-    console.log("Here is the post:", post)
     // - grab all comments by post_id
     const comments = await Comment.findAll({
       where: {
@@ -249,7 +247,6 @@ router.put(
 );
 
 router.get('/*', function(req, res){
-  console.log('404ing');
   res.render('error', {message:"404, this page does not exist!"});
 });
 
