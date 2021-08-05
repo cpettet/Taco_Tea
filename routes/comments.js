@@ -26,7 +26,6 @@ router.put(
   asyncHandler(async (req, res) => {
     const commentId = req.params.id;
     const authorId = req.session.auth.userId;
-    console.log("Request body:", req.body)
     const content = req.body.content;
     try {
       const comment = await Comment.findByPk(commentId);

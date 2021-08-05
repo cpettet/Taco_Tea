@@ -140,7 +140,6 @@ window.addEventListener("DOMContentLoaded", async () => {
       e.preventDefault();
       const commentId = e.target.id;
       const content = document.getElementById(commentId).value;
-      console.log("Content:", content)
       await fetch(`/comments/${commentId}`, {
         method: "PUT",
         headers: {

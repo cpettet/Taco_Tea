@@ -73,7 +73,6 @@ router.post(
         is_gluten_free: isGlutenFree,
         body: recipeBody,
       });
-      console.log("Recipe:", recipe);
     }
     res.redirect("/");
   })
@@ -249,7 +248,6 @@ router.put(
 );
 
 router.get('/*', function(req, res){
-  console.log('404ing');
   res.render('error', {message:"404, this page does not exist!"});
 });
 
