@@ -52,7 +52,6 @@ router.post(
         res.redirect("/");
         // insert the new user in the db
       } catch (error) {
-        console.log(`here comes the error`, error);
         res.render("create-user", {
           csrfToken: req.csrfToken(),
           error:
